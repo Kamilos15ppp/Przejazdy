@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">Przejazdy</string>
-    <string name="edt_hint_username">Wprowadź Login</string>
-    <string name="edt_hint_password">Wprowadź Hasło</string>
+    <string name="edt_hint_username_login">Wprowadź Login</string>
+    <string name="edt_hint_password_login">Wprowadź Hasło</string>
+    <string name="edt_hint_username_signup">Wprowadź Login</string>
+    <string name="edt_hint_password_signup">Wprowadź Hasło</string>
     <string name="btn_login">Zaloguj</string>
     <string name="btn_signup">Utwórz Konto</string>
+    <string name="title_login">Logowanie</string>
+    <string name="title_signup">Tworzenie Konta</string>
 
 
 </resources>
