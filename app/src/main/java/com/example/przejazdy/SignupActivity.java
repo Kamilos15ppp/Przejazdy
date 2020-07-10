@@ -1,22 +1,24 @@
 package com.example.przejazdy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class SignupActivity extends AppCompatActivity {
 
     private EditText edtUsernameSignup, edtPasswordSignup;
     private Button btnSignup2, btnLogin2;
     private ImageView imgSignupBus;
-    private ConstraintLayout signupConstraintLayout;
+    //private ConstraintLayout signupConstraintLayout;
     private boolean click2 = false;
 
     @Override
@@ -31,6 +33,8 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup2 = findViewById(R.id.btnSignup2);
         btnLogin2 = findViewById(R.id.btnLogin2);
         imgSignupBus = findViewById(R.id.imgSignupBus);
+
+        showImageToast2(imgSignupBus);
 
         imgSignupBus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,4 +76,18 @@ public class SignupActivity extends AppCompatActivity {
         });
 
     }
+
+    private void showImageToast2(View view) {
+
+        Context context = getApplicationContext();
+        CharSequence text = "Tap image for onehand mode";
+        int duration = Toast.LENGTH_SHORT;
+        int x = imgSignupBus.getTop();
+        int y = 350;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.TOP, x, y);
+        toast.show();
+
+    }
+
 }
