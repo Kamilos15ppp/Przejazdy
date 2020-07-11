@@ -8,6 +8,11 @@
     <string name="btn_signup">Utwórz Konto</string>
     <string name="title_login">Logowanie</string>
     <string name="title_signup">Tworzenie Konta</string>
+    <string name="tap_image">Dotknij tutaj aby włączyć tryb jednoręczny</string>
+    <string name="fancy_username_pass_required">Wymagane loign i hasło!</string>
+    <string name="fancy_user_signedup">został utworzony poprawinie!</string>
+    <string name="fancy_user_signedup_error">Wystąpił błąd:</string>
+    <string name="progressdialog_signingup">Tworzenie użytkownika</string>
 
 
 </resources>
