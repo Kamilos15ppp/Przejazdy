@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 user.getUsername() + " " + getString(R.string.fancy_user_login),
                                                 Toast.LENGTH_SHORT, FancyToast.SUCCESS,
                                                 false).show();
-                                        //transitionPrzejazdyy();
+                                        transitionHomePageActivity();
 
                                     } else {
 
@@ -162,4 +162,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
     }
+
+    private void transitionHomePageActivity() {
+
+        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
+
 }

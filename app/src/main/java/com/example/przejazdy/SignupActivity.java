@@ -78,7 +78,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         if (ParseUser.getCurrentUser() != null) {
 
             //ParseUser.getCurrentUser().logOut();
-            //transitionSocialMediaActivity();
+            transitionHomePageActivity();
 
         }
     }
@@ -119,7 +119,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         appUser.getUsername() + " " + getString(R.string.fancy_user_signedup),
                                         Toast.LENGTH_SHORT, FancyToast.SUCCESS,
                                         false).show();
-                                //transitionPrzejazdy();
+
 
                             } else {
 
@@ -171,6 +171,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
 
         }
+    }
+
+    private void transitionHomePageActivity() {
+
+        Intent intent = new Intent(SignupActivity.this, HomePageActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
 }
