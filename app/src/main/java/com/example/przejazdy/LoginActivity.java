@@ -14,6 +14,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.shashank.sony.fancytoastlib.FancyToast;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edtUsernameLogin, edtPasswordLogin;
@@ -67,8 +72,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        btnSignup1.setOnClickListener(LoginActivity.this);
-        btnLogin1.setOnClickListener(LoginActivity.this);
+        btnSignup1.setOnClickListener(this);
+        btnLogin1.setOnClickListener(this);
+
+        if (ParseUser.getCurrentUser() != null) {
+            ParseUser.getCurrentUser().logOut();
+        }
 
     }
 
@@ -85,7 +94,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btnLogin1:
 
+                if (edtUsernameLogin.getText().toString().equals("") ||
+                        edtPasswordLogin.getText().toString().equals("") ) {
 
+                    FancyToast.makeText(LoginActivity.this,
+                            getString(R.string.fancy_username_pass_required),
+                            Toast.LENGTH_SHORT, FancyToast.INFO,
+                            false).show();
+
+                } else {
+
+                    ParseUser.logInInBackground(edtUsernameLogin.getText().toString(),
+                            edtPasswordLogin.getText().toString(),
+                            new LogInCallback() {
+                                @Override
+                                public void done(ParseUser user, ParseException e) {
+
+                                    if (user != null && e == null) {
+
+                                        FancyToast.makeText(LoginActivity.this,
+                                                user.getUsername() + " " + getString(R.string.fancy_user_login),
+                                                Toast.LENGTH_SHORT, FancyToast.SUCCESS,
+                                                false).show();
+                                        //transitionPrzejazdyy();
+
+                                    } else {
+
+                                        FancyToast.makeText(LoginActivity.this,
+                                                getString(R.string.fancy_user_login_user_pass),
+                                                Toast.LENGTH_SHORT, FancyToast.ERROR,
+                                                false).show();
+
+                                    }
+
+                                }
+                            });
+                }
 
                 break;
 

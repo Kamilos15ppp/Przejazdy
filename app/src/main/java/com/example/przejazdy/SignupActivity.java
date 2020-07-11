@@ -72,8 +72,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        btnLogin2.setOnClickListener(SignupActivity.this);
-        btnSignup2.setOnClickListener(SignupActivity.this);
+        btnLogin2.setOnClickListener(this);
+        btnSignup2.setOnClickListener(this);
 
         if (ParseUser.getCurrentUser() != null) {
 

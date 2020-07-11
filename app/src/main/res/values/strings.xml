@@ -11,8 +11,11 @@
     <string name="tap_image">Dotknij tutaj aby włączyć tryb jednoręczny</string>
     <string name="fancy_username_pass_required">Wymagane loign i hasło!</string>
     <string name="fancy_user_signedup">został utworzony poprawinie!</string>
+    <string name="fancy_user_login">został zalogowany poprawinie!</string>
+    <string name="fancy_user_login_user_pass">Wprowadź poprawne dane logowania!</string>
     <string name="fancy_user_signedup_error">Wystąpił błąd:</string>
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
+
 
 
 </resources>
