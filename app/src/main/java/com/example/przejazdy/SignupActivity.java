@@ -119,7 +119,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         appUser.getUsername() + " " + getString(R.string.fancy_user_signedup),
                                         Toast.LENGTH_SHORT, FancyToast.SUCCESS,
                                         false).show();
-
+                                transitionHomePageActivity();
 
                             } else {
 
@@ -178,7 +178,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(SignupActivity.this, HomePageActivity.class);
         startActivity(intent);
         finish();
-
 
     }
 

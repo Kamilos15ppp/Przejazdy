@@ -15,6 +15,8 @@
     <string name="fancy_user_login_user_pass">Wprowadź poprawne dane logowania!</string>
     <string name="fancy_user_signedup_error">Wystąpił błąd:</string>
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
