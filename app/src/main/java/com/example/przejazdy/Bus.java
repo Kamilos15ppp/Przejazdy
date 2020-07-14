@@ -27,9 +27,6 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
     private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
 
-
-    private static List<ParseObject> allObjects = new ArrayList<ParseObject>();
-
     public Bus() {
 
     }
@@ -50,7 +47,7 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("test1");
         parseQuery.whereEqualTo("typ", "A");
         parseQuery.orderByAscending("taborowy");
-        parseQuery.setLimit(1000);
+        parseQuery.setLimit(900);
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
