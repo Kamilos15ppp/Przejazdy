@@ -45,7 +45,7 @@ public class Relic extends Fragment implements AdapterView.OnItemClickListener, 
         listView.setOnItemClickListener(Relic.this);
         listView.setOnItemLongClickListener(Relic.this);
 
-        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("test1");
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("pojazdy");
         parseQuery.whereEqualTo("typ", "Z");
         parseQuery.orderByAscending("taborowy");
         parseQuery.setLimit(100);

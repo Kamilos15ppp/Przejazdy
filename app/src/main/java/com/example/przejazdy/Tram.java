@@ -45,7 +45,7 @@ public class Tram extends Fragment implements AdapterView.OnItemClickListener, A
         listView.setOnItemClickListener(Tram.this);
         listView.setOnItemLongClickListener(Tram.this);
 
-        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("test1");
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("pojazdy");
         parseQuery.whereEqualTo("typ", "T");
         parseQuery.orderByAscending("taborowy");
         parseQuery.setLimit(400);

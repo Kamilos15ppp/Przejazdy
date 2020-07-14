@@ -44,7 +44,7 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
         listView.setOnItemClickListener(Bus.this);
         listView.setOnItemLongClickListener(Bus.this);
 
-        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("test1");
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("pojazdy");
         parseQuery.whereEqualTo("typ", "A");
         parseQuery.orderByAscending("taborowy");
         parseQuery.setLimit(900);
