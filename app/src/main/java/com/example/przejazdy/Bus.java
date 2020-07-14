@@ -27,6 +27,9 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
     private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
 
+
+    private static List<ParseObject> allObjects = new ArrayList<ParseObject>();
+
     public Bus() {
 
     }
@@ -47,6 +50,7 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("test1");
         parseQuery.whereEqualTo("typ", "A");
         parseQuery.orderByAscending("taborowy");
+        parseQuery.setLimit(1000);
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -55,18 +59,17 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
                     if (objects.size() > 0) {
 
-                        arrayList.add(String.format("%s %s %s", "Nr Taborowy", "Producent", "Model"));
-
                         for (ParseObject object : objects) {
 
 
 
-                            arrayList.add(String.format("%s %s %s", object.getString("taborowy"),
-                                    object.getString("producent"), object.getString("model")));
+                            arrayList.add(object.getString("taborowy")
+                                    + " | " + object.getString("producent")
+                                    + " | " + object.getString("model"));
 
                             i++;
                         }
-                        arrayList.add(String.valueOf(i));
+                        arrayList.add("Ilość rekordów: " + i);
                         listView.setAdapter(arrayAdapter);
                         listView.setVisibility(View.VISIBLE);
 
@@ -85,11 +88,9 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
         });
 
-
-
-
         return view;
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
