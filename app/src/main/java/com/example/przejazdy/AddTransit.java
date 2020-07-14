@@ -8,18 +8,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.shashank.sony.fancytoastlib.FancyToast;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddTransit extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
@@ -46,40 +38,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
 
 
-        ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
-        parseQuery.whereNotEqualTo("username", ParseUser.getCurrentUser().getUsername());
-        parseQuery.findInBackground(new FindCallback<ParseUser>() {
-            @Override
-            public void done(List<ParseUser> users, ParseException e) {
-
-                if (e == null) {
-
-                    if (users.size() > 0) {
-
-                        for (ParseUser user : users) {
-
-                            arrayList.add(user.getUsername() + "-" +
-                                    user.get("password") + "-" +
-                                    user.getUpdatedAt());
-
-                        }
-
-                        listView.setAdapter(arrayAdapter);
-                        listView.setVisibility(View.VISIBLE);
-
-                    }
-
-                } else {
-
-                    FancyToast.makeText(getContext(),
-                            e.getMessage(),
-                            Toast.LENGTH_LONG, FancyToast.ERROR,
-                            false).show();
-
-                }
-
-            }
-        });
 
         return view;
     }
