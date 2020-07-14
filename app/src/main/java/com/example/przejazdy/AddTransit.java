@@ -12,21 +12,28 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AddTransit extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private ListView listView;
     private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
+    private FloatingActionButton floatingActionButton;
+    final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
     public AddTransit() {
 
@@ -37,16 +44,22 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_transit, container, false);
 
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
+
         listView = view.findViewById(R.id.listView);
         arrayList = new ArrayList();
         Context context = getContext();
-        arrayAdapter =new ArrayAdapter(context, android.R.layout.simple_list_item_1, arrayList);
+        arrayAdapter =new ArrayAdapter(context, R.layout.text_size_transit , arrayList);
 
         listView.setOnItemClickListener(AddTransit.this);
         listView.setOnItemLongClickListener(AddTransit.this);
 
+        //final Date currentTime = Calendar.getInstance().getTime();
+
         ParseUser parseUser = ParseUser.getCurrentUser();
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("przejazdy_" + parseUser.getUsername());
+        //parseQuery.whereEqualTo("data", currentDate);
+        parseQuery.whereEqualTo("data", currentDate);
         parseQuery.orderByAscending("data");
         parseQuery.setLimit(50);
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -67,7 +80,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
                             i++;
                         }
-                        arrayList.add("Ilość rekordów: " + i);
+                        arrayList.add("Ilość rekordów: " + i + ", Data: " + currentDate);
                         listView.setAdapter(arrayAdapter);
                         listView.setVisibility(View.VISIBLE);
 
@@ -86,6 +99,32 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
         });
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ParseObject przejazd = new ParseObject("przejazdy_qwerty");
+                przejazd.put("taborowy", "BU997");
+                przejazd.put("linia", "131");
+                przejazd.put("kierunek", "Góóóóóóra");
+                przejazd.put("poczatkowy", "Dóóóóóółłłłł");
+                przejazd.put("koncowy", "Dóóóóóółłłłł");
+                przejazd.put("data", currentDate);
+                przejazd.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+
+                        if (e == null) {
+                            Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+            }
+        });
 
 
         return view;
@@ -100,4 +139,5 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         return false;
     }
+
 }
