@@ -34,7 +34,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
     private ArrayAdapter arrayAdapter;
     private FloatingActionButton floatingActionButton;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-    public static String objectIdPublic, taborowyPublic, liniaPublic, kierunekPublic, poczatkowyPublic, koncowyPublic;
+    public static String objectIdPublic, objectIdPublic2, taborowyPublic, liniaPublic, kierunekPublic, poczatkowyPublic, koncowyPublic;
     public String userName;
 
     public AddTransit() {
@@ -55,6 +55,106 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
         listView.setOnItemClickListener(AddTransit.this);
         listView.setOnItemLongClickListener(AddTransit.this);
+
+        displayingObject();
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                transitionAddingNewTransitActivity();
+
+            }
+        });
+
+        return view;
+    }
+
+    private void transitionAddingNewTransitActivity() {
+
+        Intent intent = new Intent(getActivity(), AddingNewTransit.class);
+        startActivity(intent);
+
+    }
+
+    private void transitionEditTransitActivity() {
+
+        Intent intent = new Intent(getActivity(), EditTransit.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
+        query.orderByDescending("createdAt");
+        List<ParseObject> results = null;
+        try {
+            results = query.find();
+            if(!results.isEmpty()) {
+                String objectId, taborowy, linia, kierunek, poczatkowy, koncowy;
+                objectId = results.get(position).getObjectId();
+                taborowy = results.get(position).getString("taborowy");
+                linia = results.get(position).getString("linia");
+                kierunek = results.get(position).getString("kierunek");
+                poczatkowy = results.get(position).getString("poczatkowy");
+                koncowy = results.get(position).getString("koncowy");
+
+                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+                objectIdPublic = objectId;
+                taborowyPublic = taborowy;
+                liniaPublic = linia;
+                kierunekPublic = kierunek;
+                poczatkowyPublic = poczatkowy;
+                koncowyPublic = koncowy;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        transitionEditTransitActivity();
+
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        arrayList.clear();
+        listView.setAdapter(arrayAdapter);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
+        query.orderByDescending("createdAt");
+        List<ParseObject> results = null;
+        try {
+            results = query.find();
+            if(!results.isEmpty()) {
+                String objectId;
+                objectId = results.get(position).getObjectId();
+                objectIdPublic2 = objectId;
+                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        ParseObject po = ParseObject.createWithoutData("przejazdy_qwerty", objectIdPublic2);
+        po.deleteEventually();
+
+        FancyToast.makeText(getContext(),
+               "Usunięto przejazd",
+                Toast.LENGTH_SHORT, FancyToast.WARNING,
+                false).show();
+
+        displayingObject();
+
+        return true;
+    }
+
+    private void displayingObject() {
 
         ParseUser parseUser = ParseUser.getCurrentUser();
         userName = parseUser.getUsername().toLowerCase();
@@ -99,71 +199,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                transitionAddingNewTransitActivity();
-
-            }
-        });
-
-        return view;
-    }
-
-    private void transitionAddingNewTransitActivity() {
-
-        Intent intent = new Intent(getActivity(), AddingNewTransit.class);
-        startActivity(intent);
-
-    }
-
-    private void transitionEditTransitActivity() {
-
-        Intent intent = new Intent(getActivity(), EditTransit.class);
-        startActivity(intent);
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
-        query.orderByDescending("createdAt");
-        List<ParseObject> results = null;
-        try {
-            results = query.find();
-            if(!results.isEmpty()) {
-                String objectId, taborowy, linia, kierunek, poczatkowy, koncowy;
-                objectId = results.get(position).getObjectId();
-                taborowy = results.get(position).getString("taborowy");
-                linia = results.get(position).getString("linia");
-                kierunek = results.get(position).getString("kierunek");
-                poczatkowy = results.get(position).getString("poczatkowy");
-                koncowy = results.get(position).getString("koncowy");
-
-                Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
-                objectIdPublic = objectId;
-                taborowyPublic = taborowy;
-                liniaPublic = linia;
-                kierunekPublic = kierunek;
-                poczatkowyPublic = poczatkowy;
-                koncowyPublic = koncowy;
-            }
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        transitionEditTransitActivity();
-
-        return true;
     }
 
 }
