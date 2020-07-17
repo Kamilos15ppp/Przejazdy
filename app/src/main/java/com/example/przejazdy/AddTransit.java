@@ -31,9 +31,12 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
     private ListView listView;
     private ArrayList<String> arrayList;
+    private ArrayList<String> arrayList2;
     private ArrayAdapter arrayAdapter;
     private FloatingActionButton floatingActionButton;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    public static String objectIdPublic;
+    public String userName;
 
     public AddTransit() {
 
@@ -54,12 +57,11 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         listView.setOnItemClickListener(AddTransit.this);
         listView.setOnItemLongClickListener(AddTransit.this);
 
-        final String userName;
         ParseUser parseUser = ParseUser.getCurrentUser();
         userName = parseUser.getUsername().toLowerCase();
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("przejazdy_" + userName);
         parseQuery.whereEqualTo("data", currentDate);
-        parseQuery.orderByAscending("data");
+        parseQuery.orderByDescending("createdAt");
         parseQuery.setLimit(50);
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -76,6 +78,8 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                                     + " | " + object.getString("kierunek")
                                     + " | " + object.getString("poczatkowy")
                                     + " | " + object.getString("koncowy"));
+
+                            //arrayList2.add(object.getObjectId());
 
                             i++;
                         }
@@ -107,7 +111,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
             }
         });
 
-
         return view;
     }
 
@@ -118,14 +121,40 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
     }
 
+    private void transitionEditTransitActivity() {
+
+        Intent intent = new Intent(getActivity(), EditTransit.class);
+        startActivity(intent);
+
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        return false;
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
+        List<ParseObject> results = null;
+        try {
+            results = query.find();
+            if(!results.isEmpty()) {
+                String objectId = results.get(position).getObjectId();
+                //System.out.println(objectId);
+                Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+                objectIdPublic = objectId;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        transitionEditTransitActivity();
+
+        return true;
     }
 
 }

@@ -50,44 +50,57 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
 
-        final String userName;
-        ParseUser parseUser = ParseUser.getCurrentUser();
-        userName = parseUser.getUsername().toLowerCase();
-        ParseObject przejazd = new ParseObject("przejazdy_" + userName);
-        przejazd.put("taborowy", edtTabNumAdding.getText().toString());
-        przejazd.put("linia", edtLineNumAdding.getText().toString());
-        przejazd.put("kierunek", edtDirectionAdding.getText().toString());
-        przejazd.put("poczatkowy", edtFirstAdding.getText().toString());
-        przejazd.put("koncowy", edtLastAdding.getText().toString());
-        przejazd.put("data", currentDate);
-        przejazd.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
+        if (edtTabNumAdding.getText().toString().equals("") ||
+                edtLineNumAdding.getText().toString().equals("") ||
+                edtDirectionAdding.getText().toString().equals("") ||
+                edtFirstAdding.getText().toString().equals("") ||
+                edtLastAdding.getText().toString().equals("")) {
 
-                if (e == null) {
+            FancyToast.makeText(AddingNewTransit.this,
+                    getString(R.string.fancy_adding_new_transit_required),
+                    Toast.LENGTH_SHORT, FancyToast.INFO,
+                    false).show();
 
-                    FancyToast.makeText(AddingNewTransit.this,
-                            getString(R.string.fancy_adding_new_transit),
-                            Toast.LENGTH_SHORT, FancyToast.SUCCESS,
-                            false).show();
+        } else {
 
-                    transitionAddTransitFragment();
+            final String userName;
+            ParseUser parseUser = ParseUser.getCurrentUser();
+            userName = parseUser.getUsername().toLowerCase();
+            ParseObject przejazd = new ParseObject("przejazdy_" + userName);
+            przejazd.put("taborowy", edtTabNumAdding.getText().toString());
+            przejazd.put("linia", edtLineNumAdding.getText().toString());
+            przejazd.put("kierunek", edtDirectionAdding.getText().toString());
+            przejazd.put("poczatkowy", edtFirstAdding.getText().toString());
+            przejazd.put("koncowy", edtLastAdding.getText().toString());
+            przejazd.put("data", currentDate);
+            przejazd.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
 
-                } else {
+                    if (e == null) {
 
-                    FancyToast.makeText(AddingNewTransit.this,
-                            e.getMessage(),
-                            Toast.LENGTH_LONG, FancyToast.ERROR,
-                            false).show();
+                        FancyToast.makeText(AddingNewTransit.this,
+                                getString(R.string.fancy_adding_new_transit),
+                                Toast.LENGTH_SHORT, FancyToast.SUCCESS,
+                                false).show();
+
+                        transitionHomePageActivity();
+
+                    } else {
+
+                        FancyToast.makeText(AddingNewTransit.this,
+                                e.getMessage(),
+                                Toast.LENGTH_LONG, FancyToast.ERROR,
+                                false).show();
+
+                    }
 
                 }
-
-            }
-        });
-
+            });
+        }
     }
 
-    private void transitionAddTransitFragment() {
+    private void transitionHomePageActivity() {
 
 //        Intent intent = new Intent(AddingNewTransit.this, AddTransit.class);
 //        startActivity(intent);
