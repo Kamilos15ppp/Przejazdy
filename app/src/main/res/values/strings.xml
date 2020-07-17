@@ -15,7 +15,14 @@
     <string name="fancy_user_login_user_pass">Wprowadź poprawne dane logowania!</string>
     <string name="fancy_user_signedup_error">Wystąpił błąd:</string>
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_adding_new_transit">Dodaj nowy przejazd</string>
 
+    <string name="edt_hint_tab_num">Wprowadź Nr Taborowy</string>
+    <string name="edt_hint_line_num">Wprowadź Nr Linii</string>
+    <string name="edt_hint_direction">Wprowadź Kierunek Linii</string>
+    <string name="edt_hint_first">Wprowadź Przystanek Początkowy</string>
+    <string name="edt_hint_last">Wprowadź Przystanek Końcowy</string>
+    <string name="btn_adding_new_transit">Dodaj przejazd</string>
+    <string name="fancy_adding_new_transit">Dodano nowy przejazd</string>
 
 </resources>

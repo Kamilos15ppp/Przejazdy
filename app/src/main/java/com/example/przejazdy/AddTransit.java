@@ -1,6 +1,7 @@
 package com.example.przejazdy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,6 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class AddTransit extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class AddTransit extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener  {
 
     private ListView listView;
     private ArrayList<String> arrayList;
@@ -49,16 +49,15 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         listView = view.findViewById(R.id.listView);
         arrayList = new ArrayList();
         Context context = getContext();
-        arrayAdapter =new ArrayAdapter(context, R.layout.text_size_transit , arrayList);
+        arrayAdapter = new ArrayAdapter(context, R.layout.text_size_transit, arrayList);
 
         listView.setOnItemClickListener(AddTransit.this);
         listView.setOnItemLongClickListener(AddTransit.this);
 
-        //final Date currentTime = Calendar.getInstance().getTime();
-
+        final String userName;
         ParseUser parseUser = ParseUser.getCurrentUser();
-        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("przejazdy_" + parseUser.getUsername());
-        //parseQuery.whereEqualTo("data", currentDate);
+        userName = parseUser.getUsername().toLowerCase();
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("przejazdy_" + userName);
         parseQuery.whereEqualTo("data", currentDate);
         parseQuery.orderByAscending("data");
         parseQuery.setLimit(50);
@@ -103,31 +102,20 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
             @Override
             public void onClick(View v) {
 
-                ParseObject przejazd = new ParseObject("przejazdy_qwerty");
-                przejazd.put("taborowy", "BU997");
-                przejazd.put("linia", "131");
-                przejazd.put("kierunek", "Góóóóóóra");
-                przejazd.put("poczatkowy", "Dóóóóóółłłłł");
-                przejazd.put("koncowy", "Dóóóóóółłłłł");
-                przejazd.put("data", currentDate);
-                przejazd.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-
-                        if (e == null) {
-                            Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
+                transitionAddingNewTransitActivity();
 
             }
         });
 
 
         return view;
+    }
+
+    private void transitionAddingNewTransitActivity() {
+
+        Intent intent = new Intent(getActivity(), AddingNewTransit.class);
+        startActivity(intent);
+
     }
 
     @Override

@@ -6,4 +6,5 @@
     <color name="loginConstraintLayout">#448AFF</color>
     <color name="signupConstraintLayout">#448AFF</color>
     <color name="btn_login_signup">#FFD600</color>
+    <color name="btn_adding_transit">#1DD900</color>
 </resources>

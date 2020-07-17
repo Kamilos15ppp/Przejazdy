@@ -2,12 +2,12 @@ package com.example.przejazdy;
 
 import android.os.Bundle;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.parse.ParseUser;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -20,6 +20,9 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        ParseUser parseUser = ParseUser.getCurrentUser();
+        setTitle("Przejazdy użytkownika " + parseUser.getUsername());
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
