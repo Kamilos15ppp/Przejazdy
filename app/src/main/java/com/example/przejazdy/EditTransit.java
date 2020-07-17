@@ -41,6 +41,12 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
 
         btnEditTransit.setOnClickListener(this);
 
+        edtTabNumEdit.setText(AddTransit.taborowyPublic);
+        edtLineNumEdit.setText(AddTransit.liniaPublic);
+        edtDirectionEdit.setText(AddTransit.kierunekPublic);
+        edtFirstEdit.setText(AddTransit.poczatkowyPublic);
+        edtLastEdit.setText(AddTransit.koncowyPublic);
+
     }
 
     @Override

@@ -31,11 +31,10 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
     private ListView listView;
     private ArrayList<String> arrayList;
-    private ArrayList<String> arrayList2;
     private ArrayAdapter arrayAdapter;
     private FloatingActionButton floatingActionButton;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-    public static String objectIdPublic;
+    public static String objectIdPublic, taborowyPublic, liniaPublic, kierunekPublic, poczatkowyPublic, koncowyPublic;
     public String userName;
 
     public AddTransit() {
@@ -78,8 +77,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                                     + " | " + object.getString("kierunek")
                                     + " | " + object.getString("poczatkowy")
                                     + " | " + object.getString("koncowy"));
-
-                            //arrayList2.add(object.getObjectId());
 
                             i++;
                         }
@@ -138,14 +135,26 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
+        query.orderByDescending("createdAt");
         List<ParseObject> results = null;
         try {
             results = query.find();
             if(!results.isEmpty()) {
-                String objectId = results.get(position).getObjectId();
-                //System.out.println(objectId);
+                String objectId, taborowy, linia, kierunek, poczatkowy, koncowy;
+                objectId = results.get(position).getObjectId();
+                taborowy = results.get(position).getString("taborowy");
+                linia = results.get(position).getString("linia");
+                kierunek = results.get(position).getString("kierunek");
+                poczatkowy = results.get(position).getString("poczatkowy");
+                koncowy = results.get(position).getString("koncowy");
+
                 Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
                 objectIdPublic = objectId;
+                taborowyPublic = taborowy;
+                liniaPublic = linia;
+                kierunekPublic = kierunek;
+                poczatkowyPublic = poczatkowy;
+                koncowyPublic = koncowy;
             }
 
         } catch (ParseException e) {
