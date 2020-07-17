@@ -22,7 +22,8 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         ParseUser parseUser = ParseUser.getCurrentUser();
-        setTitle(R.string.title_homepage + " " + parseUser.getUsername());
+        String user = parseUser.getUsername();
+        setTitle(getString(R.string.title_homepage) + " " + user);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
