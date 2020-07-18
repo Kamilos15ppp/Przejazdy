@@ -149,8 +149,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                 Toast.LENGTH_SHORT, FancyToast.WARNING,
                 false).show();
 
-        displayingObject();
-
         return true;
     }
 
