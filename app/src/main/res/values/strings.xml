@@ -56,7 +56,6 @@
     <string name="fancy_delete_bus">Usunięto autobus</string>
     <string name="fancy_delete_tram">Usunięto tramwaj</string>
     <string name="fancy_delete_relic">Usunięto zabytek</string>
-
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
 
 </resources>
