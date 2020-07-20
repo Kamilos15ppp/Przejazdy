@@ -28,7 +28,7 @@ public class AddingNewBus extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_new_bus);
 
-        setTitle("dodawanie autobusu");
+        setTitle(R.string.title_adding_new_bus);
 
         edtTabNumBusAdd = findViewById(R.id.edtTabNumBusAdd);
         edtMakerBusAdd = findViewById(R.id.edtMakerBusAdd);
@@ -68,7 +68,7 @@ public class AddingNewBus extends AppCompatActivity implements View.OnClickListe
                     if (e == null) {
 
                         FancyToast.makeText(AddingNewBus.this,
-                                getString(R.string.fancy_adding_new_transit),
+                                getString(R.string.fancy_adding_new_bus),
                                 Toast.LENGTH_SHORT, FancyToast.SUCCESS,
                                 false).show();
 

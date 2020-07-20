@@ -28,7 +28,7 @@ public class EditBus extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_bus);
 
-        setTitle("Edytuj autobus");
+        setTitle(R.string.title_edit_bus);
 
         edtTabNumBus = findViewById(R.id.edtTabNumBus);
         edtMakerBus = findViewById(R.id.edtMakerBus);
@@ -80,7 +80,7 @@ public class EditBus extends AppCompatActivity implements View.OnClickListener {
             });
 
             FancyToast.makeText(EditBus.this,
-                    getString(R.string.fancy_edit_transit),
+                    getString(R.string.fancy_edit_bus),
                     Toast.LENGTH_SHORT, FancyToast.SUCCESS,
                     false).show();
 

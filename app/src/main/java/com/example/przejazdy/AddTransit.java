@@ -145,7 +145,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         po.deleteEventually();
 
         FancyToast.makeText(getContext(),
-               "Usunięto przejazd",
+               getString(R.string.fancy_delete_transit),
                 Toast.LENGTH_SHORT, FancyToast.WARNING,
                 false).show();
 

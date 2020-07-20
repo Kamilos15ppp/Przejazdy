@@ -1,35 +1,62 @@
 <resources>
     <string name="app_name">Przejazdy</string>
+<!--    titles-->
+    <string name="title_login">Logowanie</string>
+    <string name="title_signup">Tworzenie Konta</string>
+    <string name="title_adding_new_transit">Dodaj nowy przejazd</string>
+    <string name="title_adding_new_bus">Dodaj nowy autobus</string>
+    <string name="title_adding_new_tram">Dodaj nowy tramwaj</string>
+    <string name="title_adding_new_relic">Dodaj nowy zabytek</string>
+    <string name="title_edit_transit">Edytuj wybrany przejazd</string>
+    <string name="title_edit_bus">Edytuj wybrany autobus</string>
+    <string name="title_edit_tram">Edytuj wybrany tramwaj</string>
+    <string name="title_edit_relic">Edytuj wybrany zabytek</string>
+    <string name="title_homepage">Przejazdy użytkownika</string>
+<!--    editTexts-->
     <string name="edt_hint_username_login">Wprowadź Login</string>
     <string name="edt_hint_password_login">Wprowadź Hasło</string>
     <string name="edt_hint_username_signup">Wprowadź Login</string>
     <string name="edt_hint_password_signup">Wprowadź Hasło</string>
+    <string name="edt_hint_bus_tab_num">Wprowadź Nr Taborowy</string>
+    <string name="edt_hint_bus_line_num">Wprowadź Nr Linii</string>
+    <string name="edt_hint_bus_direction">Wprowadź Kierunek Linii</string>
+    <string name="edt_hint_bus_first">Wprowadź Przystanek Początkowy</string>
+    <string name="edt_hint_bus_last">Wprowadź Przystanek Końcowy</string>
+    <string name="edt_hint_bus_maker">Wprowadź Producenta</string>
+    <string name="edt_hint_bus_model">Wprowadź Model</string>
+    <string name="edt_hint_bus_info">Wprowadź Info (nie jest wymagane)</string>
+<!--    buttons-->
     <string name="btn_login">Zaloguj</string>
     <string name="btn_signup">Utwórz Konto</string>
-    <string name="title_login">Logowanie</string>
-    <string name="title_signup">Tworzenie Konta</string>
+    <string name="btn_adding_new_transit">Dodaj przejazd</string>
+    <string name="btn_adding_bus">Dodaj autobus</string>
+    <string name="btn_adding_tram">Dodaj tramwaj</string>
+    <string name="btn_adding_relic">Dodaj zabytek</string>
+    <string name="btn_edit_transit">Edytuj przejazd</string>
+    <string name="btn_edit_bus">Edytuj autobus</string>
+    <string name="btn_edit_tram">Edytuj tramwaj</string>
+    <string name="btn_edit_relic">Edytuj zabytek</string>
+<!--    fancyToasts, toasts-->
     <string name="tap_image">Dotknij tutaj aby włączyć tryb jednoręczny</string>
     <string name="fancy_username_pass_required">Wymagane loign i hasło!</string>
     <string name="fancy_user_signedup">został utworzony poprawinie!</string>
     <string name="fancy_user_login">został zalogowany poprawinie!</string>
     <string name="fancy_user_login_user_pass">Wprowadź poprawne dane logowania!</string>
     <string name="fancy_user_signedup_error">Wystąpił błąd:</string>
-    <string name="progressdialog_signingup">Tworzenie użytkownika</string>
-
-    <string name="title_adding_new_transit">Dodaj nowy przejazd</string>
-    <string name="edt_hint_tab_num">Wprowadź Nr Taborowy</string>
-    <string name="edt_hint_line_num">Wprowadź Nr Linii</string>
-    <string name="edt_hint_direction">Wprowadź Kierunek Linii</string>
-    <string name="edt_hint_first">Wprowadź Przystanek Początkowy</string>
-    <string name="edt_hint_last">Wprowadź Przystanek Końcowy</string>
-    <string name="btn_adding_new_transit">Dodaj przejazd</string>
     <string name="fancy_adding_new_transit">Dodano nowy przejazd</string>
+    <string name="fancy_adding_new_bus">Dodano nowy autobus</string>
+    <string name="fancy_adding_new_tram">Dodano nowy tramwaj</string>
+    <string name="fancy_adding_new_relic">Dodano nowy zabytek</string>
     <string name="fancy_adding_new_transit_required">Wprowadź wszystkie dane!</string>
-
-    <string name="title_edit_transit">Edytuj wybrany przejazd</string>
-    <string name="btn_edit_transit">Edytuj przejazd</string>
     <string name="fancy_edit_transit">Zaktualizowano przejazd</string>
+    <string name="fancy_edit_bus">Zaktualizowano autobus</string>
+    <string name="fancy_edit_tram">Zaktualizowano tramwaj</string>
+    <string name="fancy_edit_relic">Zaktualizowano zabytek</string>
+    <string name="fancy_delete_transit">Usunięto przejazd</string>
+    <string name="fancy_delete_bus">Usunięto autobus</string>
+    <string name="fancy_delete_tram">Usunięto tramwaj</string>
+    <string name="fancy_delete_relic">Usunięto zabytek</string>
 
-    <string name="title_homepage">Przejazdy użytkownika</string>
+    <string name="progressdialog_signingup">Tworzenie użytkownika</string>
 
 </resources>

@@ -141,7 +141,7 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
         po.deleteEventually();
 
         FancyToast.makeText(getContext(),
-                "Usunięto pojazd",
+                getString(R.string.fancy_delete_bus),
                 Toast.LENGTH_SHORT, FancyToast.WARNING,
                 false).show();
 
