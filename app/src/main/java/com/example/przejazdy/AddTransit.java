@@ -34,7 +34,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
     private ArrayAdapter arrayAdapter;
     private FloatingActionButton floatingActionButton;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-    public static String objectIdPublic, objectIdPublic2, taborowyPublic, liniaPublic, kierunekPublic, poczatkowyPublic, koncowyPublic;
+    public static String objectIdTransit, objectIdTransit2, taborowyTransit, liniaTransit, kierunekTransit, poczatkowyTransit, koncowyTransit;
     public String userName;
 
     public AddTransit() {
@@ -102,12 +102,12 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                 koncowy = results.get(position).getString("koncowy");
 
                 //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
-                objectIdPublic = objectId;
-                taborowyPublic = taborowy;
-                liniaPublic = linia;
-                kierunekPublic = kierunek;
-                poczatkowyPublic = poczatkowy;
-                koncowyPublic = koncowy;
+                objectIdTransit = objectId;
+                taborowyTransit = taborowy;
+                liniaTransit = linia;
+                kierunekTransit = kierunek;
+                poczatkowyTransit = poczatkowy;
+                koncowyTransit = koncowy;
             }
 
         } catch (ParseException e) {
@@ -132,7 +132,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
             if(!results.isEmpty()) {
                 String objectId;
                 objectId = results.get(position).getObjectId();
-                objectIdPublic2 = objectId;
+                objectIdTransit2 = objectId;
                 //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
 
             }
@@ -141,7 +141,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
             e.printStackTrace();
         }
 
-        ParseObject po = ParseObject.createWithoutData("przejazdy_qwerty", objectIdPublic2);
+        ParseObject po = ParseObject.createWithoutData("przejazdy_qwerty", objectIdTransit2);
         po.deleteEventually();
 
         FancyToast.makeText(getContext(),

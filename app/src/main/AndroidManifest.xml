@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditTransit"></activity>
+        <activity android:name=".AddingNewBus"></activity>
+        <activity android:name=".EditBus" />
+        <activity android:name=".EditTransit" />
         <activity android:name=".AddingNewTransit" />
         <activity
             android:name=".HomePageActivity"

@@ -39,13 +39,13 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
         edtLastEdit = findViewById(R.id.edtLastEdit);
         btnEditTransit = findViewById(R.id.btnEditTransit);
 
-        btnEditTransit.setOnClickListener(this);
+        edtTabNumEdit.setText(AddTransit.taborowyTransit);
+        edtLineNumEdit.setText(AddTransit.liniaTransit);
+        edtDirectionEdit.setText(AddTransit.kierunekTransit);
+        edtFirstEdit.setText(AddTransit.poczatkowyTransit);
+        edtLastEdit.setText(AddTransit.koncowyTransit);
 
-        edtTabNumEdit.setText(AddTransit.taborowyPublic);
-        edtLineNumEdit.setText(AddTransit.liniaPublic);
-        edtDirectionEdit.setText(AddTransit.kierunekPublic);
-        edtFirstEdit.setText(AddTransit.poczatkowyPublic);
-        edtLastEdit.setText(AddTransit.koncowyPublic);
+        btnEditTransit.setOnClickListener(this);
 
     }
 
@@ -69,7 +69,7 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
             ParseUser parseUser = ParseUser.getCurrentUser();
             userName = parseUser.getUsername().toLowerCase();
             ParseQuery<ParseObject> przejazd = ParseQuery.getQuery("przejazdy_" + userName);
-            przejazd.getInBackground(AddTransit.objectIdPublic, new GetCallback<ParseObject>() {
+            przejazd.getInBackground(AddTransit.objectIdTransit, new GetCallback<ParseObject>() {
                 public void done(ParseObject object, ParseException e) {
 
                     if (e == null) {

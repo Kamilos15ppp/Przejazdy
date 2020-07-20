@@ -1,6 +1,7 @@
 package com.example.przejazdy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -26,6 +28,8 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
     private ListView listView;
     private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
+    private FloatingActionButton floatingActionButton;
+    public static String objectIdBus, objectIdBus2, taborowyBus, makerBus, modelBus, infoBus;
 
     public Bus() {
 
@@ -36,6 +40,8 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bus, container, false);
 
+        floatingActionButton = view.findViewById(R.id.floatingActionButton2);
+
         listView = view.findViewById(R.id.listView);
         arrayList = new ArrayList();
         Context context = getContext();
@@ -43,6 +49,106 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
         listView.setOnItemClickListener(Bus.this);
         listView.setOnItemLongClickListener(Bus.this);
+
+        displayingObject();
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                transitionAddingNewBusActivity();
+
+            }
+        });
+
+        return view;
+    }
+
+    private void transitionAddingNewBusActivity() {
+
+        Intent intent = new Intent(getActivity(), AddingNewBus.class);
+        startActivity(intent);
+
+    }
+
+    private void transitionEditBusActivity() {
+
+        Intent intent = new Intent(getActivity(), EditBus.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("pojazdy");
+        query.whereEqualTo("typ", "A");
+        query.orderByAscending("taborowy");
+        List<ParseObject> results = null;
+        try {
+            results = query.find();
+            if(!results.isEmpty()) {
+                String objectId, taborowy, producent, model, info;
+                objectId = results.get(position).getObjectId();
+                taborowy = results.get(position).getString("taborowy");
+                producent = results.get(position).getString("producent");
+                model = results.get(position).getString("model");
+                info = results.get(position).getString("info");
+
+
+                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+                objectIdBus = objectId;
+                taborowyBus = taborowy;
+                makerBus = producent;
+                modelBus = model;
+                infoBus = info;
+
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        transitionEditBusActivity();
+
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+        arrayList.clear();
+        listView.setAdapter(arrayAdapter);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("pojazdy");
+        query.whereEqualTo("typ", "A");
+        query.orderByAscending("taborowy");
+        List<ParseObject> results = null;
+        try {
+            results = query.find();
+            if(!results.isEmpty()) {
+                String objectId;
+                objectId = results.get(position).getObjectId();
+                objectIdBus2 = objectId;
+                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        ParseObject po = ParseObject.createWithoutData("pojazdy", objectIdBus2);
+        po.deleteEventually();
+
+        FancyToast.makeText(getContext(),
+                "Usunięto pojazd",
+                Toast.LENGTH_SHORT, FancyToast.WARNING,
+                false).show();
+
+        return true;
+    }
+
+    private void displayingObject() {
 
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("pojazdy");
         parseQuery.whereEqualTo("typ", "A");
@@ -85,18 +191,6 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
         });
 
-        return view;
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        return false;
     }
 
 }
