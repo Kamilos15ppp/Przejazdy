@@ -166,8 +166,6 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
                         for (ParseObject object : objects) {
 
-
-
                             arrayList.add(object.getString("taborowy")
                                     + " | " + object.getString("producent")
                                     + " | " + object.getString("model")
@@ -175,6 +173,7 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
                             i++;
                         }
+
                         arrayList.add("Ilość pojazdów: " + i);
                         listView.setAdapter(arrayAdapter);
                         listView.setVisibility(View.VISIBLE);
