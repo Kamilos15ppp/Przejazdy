@@ -63,11 +63,12 @@ public class Relic extends Fragment implements AdapterView.OnItemClickListener, 
 
                             arrayList.add(object.getString("taborowy")
                                     + " | " + object.getString("producent")
-                                    + " | " + object.getString("model"));
+                                    + " | " + object.getString("model")
+                                    + " | " + object.getString("info"));
 
                             i++;
                         }
-                        arrayList.add("Ilość rekordów: " + i);
+                        arrayList.add("Ilość pojazdów: " + i);
                         listView.setAdapter(arrayAdapter);
                         listView.setVisibility(View.VISIBLE);
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Przejazdy</string>
-<!--    titles-->
+    <!--    titles-->
     <string name="title_login">Logowanie</string>
     <string name="title_signup">Tworzenie Konta</string>
     <string name="title_adding_new_transit">Dodaj nowy przejazd</string>
@@ -12,20 +12,20 @@
     <string name="title_edit_tram">Edytuj wybrany tramwaj</string>
     <string name="title_edit_relic">Edytuj wybrany zabytek</string>
     <string name="title_homepage">Przejazdy użytkownika</string>
-<!--    editTexts-->
+    <!--    editTexts-->
     <string name="edt_hint_username_login">Wprowadź Login</string>
     <string name="edt_hint_password_login">Wprowadź Hasło</string>
     <string name="edt_hint_username_signup">Wprowadź Login</string>
     <string name="edt_hint_password_signup">Wprowadź Hasło</string>
-    <string name="edt_hint_bus_tab_num">Wprowadź Nr Taborowy</string>
+    <string name="edt_hint_bus_tram_relic_tab_num">Wprowadź Nr Taborowy</string>
     <string name="edt_hint_bus_line_num">Wprowadź Nr Linii</string>
     <string name="edt_hint_bus_direction">Wprowadź Kierunek Linii</string>
     <string name="edt_hint_bus_first">Wprowadź Przystanek Początkowy</string>
     <string name="edt_hint_bus_last">Wprowadź Przystanek Końcowy</string>
-    <string name="edt_hint_bus_maker">Wprowadź Producenta</string>
-    <string name="edt_hint_bus_model">Wprowadź Model</string>
-    <string name="edt_hint_bus_info">Wprowadź Info (nie jest wymagane)</string>
-<!--    buttons-->
+    <string name="edt_hint_bus_tram_relic_maker">Wprowadź Producenta</string>
+    <string name="edt_hint_bus_tram_relic_model">Wprowadź Model</string>
+    <string name="edt_hint_bus_tram_relic_info">Wprowadź Info (nie jest wymagane)</string>
+    <!--    buttons-->
     <string name="btn_login">Zaloguj</string>
     <string name="btn_signup">Utwórz Konto</string>
     <string name="btn_adding_new_transit">Dodaj przejazd</string>
@@ -36,7 +36,7 @@
     <string name="btn_edit_bus">Edytuj autobus</string>
     <string name="btn_edit_tram">Edytuj tramwaj</string>
     <string name="btn_edit_relic">Edytuj zabytek</string>
-<!--    fancyToasts, toasts-->
+    <!--    fancyToasts, toasts-->
     <string name="tap_image">Dotknij tutaj aby włączyć tryb jednoręczny</string>
     <string name="fancy_username_pass_required">Wymagane loign i hasło!</string>
     <string name="fancy_user_signedup">został utworzony poprawinie!</string>

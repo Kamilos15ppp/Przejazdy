@@ -29,7 +29,7 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
     private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
     private FloatingActionButton floatingActionButton;
-    public static String objectIdBus, objectIdBus2, taborowyBus, makerBus, modelBus, infoBus;
+    public static String objectIdBus, taborowyBus, makerBus, modelBus, infoBus;
 
     public Bus() {
 
@@ -81,71 +81,73 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("pojazdy");
-        query.whereEqualTo("typ", "A");
-        query.orderByAscending("taborowy");
-        List<ParseObject> results = null;
-        try {
-            results = query.find();
-            if(!results.isEmpty()) {
-                String objectId, taborowy, producent, model, info;
-                objectId = results.get(position).getObjectId();
-                taborowy = results.get(position).getString("taborowy");
-                producent = results.get(position).getString("producent");
-                model = results.get(position).getString("model");
-                info = results.get(position).getString("info");
-
-
-                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
-                objectIdBus = objectId;
-                taborowyBus = taborowy;
-                makerBus = producent;
-                modelBus = model;
-                infoBus = info;
-
-            }
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        transitionEditBusActivity();
-
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-        arrayList.clear();
-        listView.setAdapter(arrayAdapter);
+//        WORKING FOR 100 RECORDS
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("pojazdy");
+//        query.whereEqualTo("typ", "A");
+//        query.orderByAscending("taborowy");
+//        List<ParseObject> results = null;
+//        try {
+//            results = query.find();
+//            if(!results.isEmpty()) {
+//                String objectId, taborowy, producent, model, info;
+//                objectId = results.get(position).getObjectId();
+//                taborowy = results.get(position).getString("taborowy");
+//                producent = results.get(position).getString("producent");
+//                model = results.get(position).getString("model");
+//                info = results.get(position).getString("info");
+//
+//
+//                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+//                objectIdBus = objectId;
+//                taborowyBus = taborowy;
+//                makerBus = producent;
+//                modelBus = model;
+//                infoBus = info;
+//
+//            }
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        transitionEditBusActivity();
+//--------------------------------------------------------------------------------------------------
+//        MAYBE WORKING
+//        arrayList.clear();
+//        listView.setAdapter(arrayAdapter);
+//
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("pojazdy");
+//        query.whereEqualTo("typ", "A");
+//        query.orderByAscending("taborowy");
+//        List<ParseObject> results = null;
+//        try {
+//            results = query.find();
+//            if(!results.isEmpty()) {
+//                String objectId;
+//                objectId = results.get(position).getObjectId();
+//                objectIdBus2 = objectId;
+//                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ParseObject po = ParseObject.createWithoutData("pojazdy", objectIdBus2);
+//        po.deleteEventually();
+//
+//        FancyToast.makeText(getContext(),
+//                getString(R.string.fancy_delete_bus),
+//                Toast.LENGTH_SHORT, FancyToast.WARNING,
+//                false).show();
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("pojazdy");
-        query.whereEqualTo("typ", "A");
-        query.orderByAscending("taborowy");
-        List<ParseObject> results = null;
-        try {
-            results = query.find();
-            if(!results.isEmpty()) {
-                String objectId;
-                objectId = results.get(position).getObjectId();
-                objectIdBus2 = objectId;
-                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
-
-            }
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        ParseObject po = ParseObject.createWithoutData("pojazdy", objectIdBus2);
-        po.deleteEventually();
-
-        FancyToast.makeText(getContext(),
-                getString(R.string.fancy_delete_bus),
-                Toast.LENGTH_SHORT, FancyToast.WARNING,
-                false).show();
-
-        return true;
+        return false;
     }
 
     private void displayingObject() {
@@ -168,11 +170,12 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
                             arrayList.add(object.getString("taborowy")
                                     + " | " + object.getString("producent")
-                                    + " | " + object.getString("model"));
+                                    + " | " + object.getString("model")
+                                    + " | " + object.getString("info"));
 
                             i++;
                         }
-                        arrayList.add("Ilość rekordów: " + i);
+                        arrayList.add("Ilość pojazdów: " + i);
                         listView.setAdapter(arrayAdapter);
                         listView.setVisibility(View.VISIBLE);
 

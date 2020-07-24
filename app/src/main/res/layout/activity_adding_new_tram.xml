@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditTransit">
+    tools:context=".AddingNewTram">
 
     <EditText
-        android:id="@+id/edtTabNumEdit"
+        android:id="@+id/edtTabNumTramAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -21,71 +21,57 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtLineNumEdit"
+        android:id="@+id/edtMakerTramAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:hint="@string/edt_hint_bus_line_num"
+        android:hint="@string/edt_hint_bus_tram_relic_maker"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTabNumEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTabNumTramAdd" />
 
     <EditText
-        android:id="@+id/edtDirectionEdit"
+        android:id="@+id/edtModelTramAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:hint="@string/edt_hint_bus_direction"
+        android:hint="@string/edt_hint_bus_tram_relic_model"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLineNumEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/edtMakerTramAdd" />
 
     <EditText
-        android:id="@+id/edtFirstEdit"
+        android:id="@+id/edtInfoTramAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:hint="@string/edt_hint_bus_first"
+        android:hint="@string/edt_hint_bus_tram_relic_info"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtDirectionEdit" />
-
-    <EditText
-        android:id="@+id/edtLastEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:ems="10"
-        android:hint="@string/edt_hint_bus_last"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtFirstEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModelTramAdd" />
 
     <Button
-        android:id="@+id/btnEditTransit"
+        android:id="@+id/btnAddTram"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:background="@drawable/round_shape_btn2"
-        android:text="@string/btn_edit_transit"
+        android:text="@string/btn_adding_tram"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLastEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/edtInfoTramAdd" />
 </androidx.constraintlayout.widget.ConstraintLayout>

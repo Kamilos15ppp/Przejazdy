@@ -14,7 +14,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:hint="@string/edt_hint_bus_tab_num"
+        android:hint="@string/edt_hint_bus_tram_relic_tab_num"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
