@@ -87,6 +87,13 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        editTransit(position);
+        transitionEditTransitActivity();
+
+    }
+
+    private void editTransit(int position) {
+
         ParseUser parseUser = ParseUser.getCurrentUser();
         userName = parseUser.getUsername().toLowerCase();
 
@@ -115,8 +122,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        transitionEditTransitActivity();
 
     }
 

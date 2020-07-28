@@ -25,7 +25,7 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
 
     private EditText edtTabNumEdit, edtLineNumEdit, edtDirectionEdit,
             edtFirstEdit, edtLastEdit;
-    private Button btnEditTransit;
+    private Button btnEditTransit, btnGoBack;
     public String userName;
 
     @Override
@@ -41,6 +41,7 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
         edtFirstEdit = findViewById(R.id.edtFirstEdit);
         edtLastEdit = findViewById(R.id.edtLastEdit);
         btnEditTransit = findViewById(R.id.btnEditTransit);
+        btnGoBack = findViewById(R.id.btnGoBack);
 
         edtTabNumEdit.setText(AddTransit.taborowyTransit);
         edtLineNumEdit.setText(AddTransit.liniaTransit);
@@ -49,26 +50,39 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
         edtLastEdit.setText(AddTransit.koncowyTransit);
 
         btnEditTransit.setOnClickListener(this);
+        btnGoBack.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
 
-        if (edtTabNumEdit.getText().toString().equals("") ||
-                edtLineNumEdit.getText().toString().equals("") ||
-                edtDirectionEdit.getText().toString().equals("") ||
-                edtFirstEdit.getText().toString().equals("") ||
-                edtLastEdit.getText().toString().equals("")) {
+        switch (view.getId()) {
 
-            FancyToast.makeText(EditTransit.this,
-                    getString(R.string.fancy_adding_new_transit_required),
-                    Toast.LENGTH_SHORT, FancyToast.INFO,
-                    false).show();
+            case R.id.btnEditTransit:
 
-        } else {
+                if (edtTabNumEdit.getText().toString().equals("") ||
+                        edtLineNumEdit.getText().toString().equals("") ||
+                        edtDirectionEdit.getText().toString().equals("") ||
+                        edtFirstEdit.getText().toString().equals("") ||
+                        edtLastEdit.getText().toString().equals("")) {
 
-            editTransit();
+                    FancyToast.makeText(EditTransit.this,
+                            getString(R.string.fancy_adding_new_transit_required),
+                            Toast.LENGTH_SHORT, FancyToast.INFO,
+                            false).show();
+
+                } else {
+
+                    editTransit();
+
+                }
+                break;
+            case R.id.btnGoBack:
+
+                transitionHomePageActivity();
+                finish();
+                break;
 
         }
 
@@ -120,6 +134,7 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
 
         });
 
+        finish();
     }
 
     private void transitionHomePageActivity() {

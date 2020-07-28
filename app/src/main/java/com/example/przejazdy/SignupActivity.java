@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -81,6 +82,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             transitionHomePageActivity();
 
         }
+
+
+
     }
 
     @Override
@@ -115,6 +119,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
                             if (e == null) {
 
+                                addingNewTransitClass();
+
                                 FancyToast.makeText(SignupActivity.this,
                                         appUser.getUsername() + " " + getString(R.string.fancy_user_signedup),
                                         Toast.LENGTH_SHORT, FancyToast.SUCCESS,
@@ -139,11 +145,24 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btnLogin2:
 
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                startActivity(intent);
+                transitionLoginActivity();
                 break;
 
         }
+
+    }
+
+    private void transitionLoginActivity() {
+
+        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void addingNewTransitClass() {
+
+        ParseObject przejazdy = new ParseObject("przejazdy_" + edtUsernameSignup.getText().toString().toLowerCase());
+        przejazdy.saveInBackground();
 
     }
 
