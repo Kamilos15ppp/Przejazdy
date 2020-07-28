@@ -30,6 +30,7 @@
     <string name="edt_hint_bus_tram_relic_maker">Wprowadź Producenta</string>
     <string name="edt_hint_bus_tram_relic_model">Wprowadź Model</string>
     <string name="edt_hint_bus_tram_relic_info">Wprowadź Info (nie jest wymagane)</string>
+    <string name="edt_hint_search_param">Wprowadź wybrany parametr</string>
     <!--    buttons-->
     <string name="btn_login">Zaloguj</string>
     <string name="btn_signup">Utwórz Konto</string>
@@ -43,6 +44,8 @@
     <string name="btn_edit_relic">Edytuj zabytek</string>
     <string name="btn_change_pass">Zmień hasło</string>
     <string name="btn_go_back_transits">Wróć do przejazdów</string>
+    <string name="btn_search">Szukaj</string>
+    <string name="btn_clear">Wyczyść</string>
     <!--    fancyToasts, toasts-->
     <string name="tap_image">Dotknij tutaj aby włączyć tryb jednoręczny</string>
     <string name="fancy_username_pass_required">Wymagane loign i hasło!</string>
@@ -69,5 +72,11 @@
     <string name="fancy_change_pass_required">Wprowadź hasło!</string>
     <string name="fancy_go_back">Nie zmieniono hasła!</string>
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
+<!--    radio buttons-->
+    <string name="radio_button_tab_num">Nr taborowy</string>
+    <string name="radio_button_line">Linia</string>
+    <string name="radio_button_first">Przystanek początkowy</string>
+    <string name="radio_button_last">Przystanek końcowy</string>
+    <string name="radio_button_date">Data</string>
 
 </resources>

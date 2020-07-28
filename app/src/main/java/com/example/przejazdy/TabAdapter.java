@@ -46,7 +46,7 @@ public class TabAdapter extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
-                return "Dodaj przejazd";
+                return "Przejazdy";
             case 1:
                 return "Wyszukaj";
             case 2:
