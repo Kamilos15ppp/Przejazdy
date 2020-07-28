@@ -71,13 +71,6 @@ public class Bus extends Fragment implements AdapterView.OnItemClickListener, Ad
 
     }
 
-    private void transitionEditBusActivity() {
-
-        Intent intent = new Intent(getActivity(), EditBus.class);
-        startActivity(intent);
-
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 

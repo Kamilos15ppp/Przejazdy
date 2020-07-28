@@ -87,7 +87,10 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
+        ParseUser parseUser = ParseUser.getCurrentUser();
+        userName = parseUser.getUsername().toLowerCase();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_" + userName);
         query.orderByDescending("createdAt");
         List<ParseObject> results = null;
         try {
@@ -101,7 +104,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                 poczatkowy = results.get(position).getString("poczatkowy");
                 koncowy = results.get(position).getString("koncowy");
 
-                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
                 objectIdTransit = objectId;
                 taborowyTransit = taborowy;
                 liniaTransit = linia;
@@ -124,7 +126,10 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         arrayList.clear();
         listView.setAdapter(arrayAdapter);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_qwerty");
+        ParseUser parseUser = ParseUser.getCurrentUser();
+        userName = parseUser.getUsername().toLowerCase();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("przejazdy_" + userName);
         query.orderByDescending("createdAt");
         List<ParseObject> results = null;
         try {
@@ -133,7 +138,6 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
                 String objectId;
                 objectId = results.get(position).getObjectId();
                 objectIdTransit2 = objectId;
-                //Toast.makeText(getContext(), objectId, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -141,7 +145,7 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
             e.printStackTrace();
         }
 
-        ParseObject po = ParseObject.createWithoutData("przejazdy_qwerty", objectIdTransit2);
+        ParseObject po = ParseObject.createWithoutData("przejazdy_" + userName, objectIdTransit2);
         po.deleteEventually();
 
         FancyToast.makeText(getContext(),

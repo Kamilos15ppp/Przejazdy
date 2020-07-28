@@ -72,13 +72,6 @@ public class Tram extends Fragment implements AdapterView.OnItemClickListener, A
 
     }
 
-    private void transitionEditTramActivity() {
-
-        Intent intent = new Intent(getActivity(), EditTram.class);
-        startActivity(intent);
-
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 

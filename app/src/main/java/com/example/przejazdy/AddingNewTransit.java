@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
             edtFirstAdding, edtLastAdding;
     private Button btnAddingTransit;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    public String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,41 +65,47 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
 
         } else {
 
-            final String userName;
-            ParseUser parseUser = ParseUser.getCurrentUser();
-            userName = parseUser.getUsername().toLowerCase();
-            ParseObject przejazd = new ParseObject("przejazdy_" + userName);
-            przejazd.put("taborowy", edtTabNumAdding.getText().toString());
-            przejazd.put("linia", edtLineNumAdding.getText().toString());
-            przejazd.put("kierunek", edtDirectionAdding.getText().toString());
-            przejazd.put("poczatkowy", edtFirstAdding.getText().toString());
-            przejazd.put("koncowy", edtLastAdding.getText().toString());
-            przejazd.put("data", currentDate);
-            przejazd.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
+            addingNewTransit();
 
-                    if (e == null) {
+        }
+    }
 
-                        FancyToast.makeText(AddingNewTransit.this,
-                                getString(R.string.fancy_adding_new_transit),
-                                Toast.LENGTH_SHORT, FancyToast.SUCCESS,
-                                false).show();
+    private void addingNewTransit() {
 
-                        transitionHomePageActivity();
+        ParseUser parseUser = ParseUser.getCurrentUser();
+        userName = parseUser.getUsername().toLowerCase();
+        ParseObject przejazd = new ParseObject("przejazdy_" + userName);
+        przejazd.put("taborowy", edtTabNumAdding.getText().toString());
+        przejazd.put("linia", edtLineNumAdding.getText().toString());
+        przejazd.put("kierunek", edtDirectionAdding.getText().toString());
+        przejazd.put("poczatkowy", edtFirstAdding.getText().toString());
+        przejazd.put("koncowy", edtLastAdding.getText().toString());
+        przejazd.put("data", currentDate);
+        przejazd.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
 
-                    } else {
+                if (e == null) {
 
-                        FancyToast.makeText(AddingNewTransit.this,
-                                e.getMessage(),
-                                Toast.LENGTH_LONG, FancyToast.ERROR,
-                                false).show();
+                    FancyToast.makeText(AddingNewTransit.this,
+                            getString(R.string.fancy_adding_new_transit),
+                            Toast.LENGTH_SHORT, FancyToast.SUCCESS,
+                            false).show();
 
-                    }
+                    transitionHomePageActivity();
+
+                } else {
+
+                    FancyToast.makeText(AddingNewTransit.this,
+                            e.getMessage(),
+                            Toast.LENGTH_LONG, FancyToast.ERROR,
+                            false).show();
 
                 }
-            });
-        }
+
+            }
+        });
+
     }
 
     private void transitionHomePageActivity() {
@@ -115,5 +123,19 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
         };
 
         h.sendEmptyMessageDelayed(0, 800);
+    }
+
+    public void rootLayoutTapped(View view) {
+
+        try {
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
     }
 }

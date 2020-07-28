@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -54,38 +55,45 @@ public class AddingNewBus extends AppCompatActivity implements View.OnClickListe
 
         } else {
 
-            ParseObject pojazd = new ParseObject("pojazdy");
+            addingNewBus();
 
-            pojazd.put("taborowy", edtTabNumBusAdd.getText().toString());
-            pojazd.put("producent", edtMakerBusAdd.getText().toString());
-            pojazd.put("model", edtModelBusAdd.getText().toString());
-            pojazd.put("info", edtInfoBusAdd.getText().toString());
-            pojazd.put("typ", "A");
-            pojazd.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
+        }
 
-                    if (e == null) {
+    }
 
-                        FancyToast.makeText(AddingNewBus.this,
-                                getString(R.string.fancy_adding_new_bus),
-                                Toast.LENGTH_SHORT, FancyToast.SUCCESS,
-                                false).show();
+    private void addingNewBus() {
 
-                        transitionHomePageActivity();
+        ParseObject pojazd = new ParseObject("pojazdy");
 
-                    } else {
+        pojazd.put("taborowy", edtTabNumBusAdd.getText().toString());
+        pojazd.put("producent", edtMakerBusAdd.getText().toString());
+        pojazd.put("model", edtModelBusAdd.getText().toString());
+        pojazd.put("info", edtInfoBusAdd.getText().toString());
+        pojazd.put("typ", "A");
+        pojazd.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
 
-                        FancyToast.makeText(AddingNewBus.this,
-                                e.getMessage(),
-                                Toast.LENGTH_LONG, FancyToast.ERROR,
-                                false).show();
+                if (e == null) {
 
-                    }
+                    FancyToast.makeText(AddingNewBus.this,
+                            getString(R.string.fancy_adding_new_bus),
+                            Toast.LENGTH_SHORT, FancyToast.SUCCESS,
+                            false).show();
+
+                    transitionHomePageActivity();
+
+                } else {
+
+                    FancyToast.makeText(AddingNewBus.this,
+                            e.getMessage(),
+                            Toast.LENGTH_LONG, FancyToast.ERROR,
+                            false).show();
 
                 }
-            });
-        }
+
+            }
+        });
 
     }
 
@@ -94,7 +102,7 @@ public class AddingNewBus extends AppCompatActivity implements View.OnClickListe
 //        Intent intent = new Intent(AddingNewTransit.this, AddTransit.class);
 //        startActivity(intent);
 
-        @SuppressLint("HandlerLeak") Handler h = new Handler(){
+        @SuppressLint("HandlerLeak") Handler h = new Handler() {
             @Override
             public void handleMessage(Message msg) {
 
@@ -104,5 +112,19 @@ public class AddingNewBus extends AppCompatActivity implements View.OnClickListe
         };
 
         h.sendEmptyMessageDelayed(0, 800);
+    }
+
+    public void rootLayoutTapped(View view) {
+
+        try {
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
     }
 }

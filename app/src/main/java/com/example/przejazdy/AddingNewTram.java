@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,38 +54,45 @@ public class AddingNewTram extends AppCompatActivity implements View.OnClickList
 
         } else {
 
-            ParseObject pojazd = new ParseObject("pojazdy");
+            addingNewTram();
 
-            pojazd.put("taborowy", edtTabNumTramAdd.getText().toString());
-            pojazd.put("producent", edtMakerTramAdd.getText().toString());
-            pojazd.put("model", edtModelTramAdd.getText().toString());
-            pojazd.put("info", edtInfoTramAdd.getText().toString());
-            pojazd.put("typ", "T");
-            pojazd.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
+        }
 
-                    if (e == null) {
+    }
 
-                        FancyToast.makeText(AddingNewTram.this,
-                                getString(R.string.fancy_adding_new_tram),
-                                Toast.LENGTH_SHORT, FancyToast.SUCCESS,
-                                false).show();
+    private void addingNewTram() {
 
-                        transitionHomePageActivity();
+        ParseObject pojazd = new ParseObject("pojazdy");
 
-                    } else {
+        pojazd.put("taborowy", edtTabNumTramAdd.getText().toString());
+        pojazd.put("producent", edtMakerTramAdd.getText().toString());
+        pojazd.put("model", edtModelTramAdd.getText().toString());
+        pojazd.put("info", edtInfoTramAdd.getText().toString());
+        pojazd.put("typ", "T");
+        pojazd.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
 
-                        FancyToast.makeText(AddingNewTram.this,
-                                e.getMessage(),
-                                Toast.LENGTH_LONG, FancyToast.ERROR,
-                                false).show();
+                if (e == null) {
 
-                    }
+                    FancyToast.makeText(AddingNewTram.this,
+                            getString(R.string.fancy_adding_new_tram),
+                            Toast.LENGTH_SHORT, FancyToast.SUCCESS,
+                            false).show();
+
+                    transitionHomePageActivity();
+
+                } else {
+
+                    FancyToast.makeText(AddingNewTram.this,
+                            e.getMessage(),
+                            Toast.LENGTH_LONG, FancyToast.ERROR,
+                            false).show();
 
                 }
-            });
-        }
+
+            }
+        });
 
     }
 
@@ -103,5 +111,19 @@ public class AddingNewTram extends AppCompatActivity implements View.OnClickList
         };
 
         h.sendEmptyMessageDelayed(0, 800);
+    }
+
+    public void rootLayoutTapped(View view) {
+
+        try {
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
     }
 }
