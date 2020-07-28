@@ -12,11 +12,16 @@
     <string name="title_edit_tram">Edytuj wybrany tramwaj</string>
     <string name="title_edit_relic">Edytuj wybrany zabytek</string>
     <string name="title_homepage">Przejazdy użytkownika</string>
+    <string name="title_menu_info">Informacje</string>
+    <string name="title_menu_settings">Ustawienia</string>
+    <string name="title_menu_change_pass">Zmień Hasło</string>
+    <string name="title_change_pass">Zmień Hasło</string>
     <!--    editTexts-->
     <string name="edt_hint_username_login">Wprowadź Login</string>
     <string name="edt_hint_password_login">Wprowadź Hasło</string>
     <string name="edt_hint_username_signup">Wprowadź Login</string>
     <string name="edt_hint_password_signup">Wprowadź Hasło</string>
+    <string name="edt_hint_password_change">Wprowadź Hasło</string>
     <string name="edt_hint_bus_tram_relic_tab_num">Wprowadź Nr Taborowy</string>
     <string name="edt_hint_bus_line_num">Wprowadź Nr Linii</string>
     <string name="edt_hint_bus_direction">Wprowadź Kierunek Linii</string>
@@ -36,6 +41,8 @@
     <string name="btn_edit_bus">Edytuj autobus</string>
     <string name="btn_edit_tram">Edytuj tramwaj</string>
     <string name="btn_edit_relic">Edytuj zabytek</string>
+    <string name="btn_change_pass">Zmień hasło</string>
+    <string name="btn_go_back_transits">Wróć do przejazdów</string>
     <!--    fancyToasts, toasts-->
     <string name="tap_image">Dotknij tutaj aby włączyć tryb jednoręczny</string>
     <string name="fancy_username_pass_required">Wymagane loign i hasło!</string>
@@ -56,6 +63,11 @@
     <string name="fancy_delete_bus">Usunięto autobus</string>
     <string name="fancy_delete_tram">Usunięto tramwaj</string>
     <string name="fancy_delete_relic">Usunięto zabytek</string>
+    <string name="fancy_menu_version">Wersja:</string>
+    <string name="fancy_menu_autor">Autor: Kamil Sarga</string>
+    <string name="fancy_change_pass">Zmieniono hasło!</string>
+    <string name="fancy_change_pass_required">Wprowadź hasło!</string>
+    <string name="fancy_go_back">Nie zmieniono hasła!</string>
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
 
 </resources>

@@ -1,5 +1,9 @@
 package com.example.przejazdy;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +25,7 @@ public class HomePageActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private TabAdapter tabAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +63,24 @@ public class HomePageActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.about:
+                String version = null;
+                //int verCode = 0;
+                try {
+                    Context context = this;
+                    PackageInfo pInfo = context.getPackageManager().getPackageInfo(getPackageName(), 0);
+                    version = pInfo.versionName;
+                    //verCode = pInfo.versionCode;
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+
                 FancyToast.makeText(HomePageActivity.this,
-                "Wersja: 1.1\nAutor: Kamil",
-                Toast.LENGTH_LONG, FancyToast.INFO,
-                false).show();
+                        getString(R.string.fancy_menu_version) + " " + 
+                                version + "\n" + 
+                                getString(R.string.fancy_menu_autor),
+                        Toast.LENGTH_LONG,
+                        FancyToast.INFO,
+                        false).show();
                 break;
             case  R.id.settings:
                 FancyToast.makeText(HomePageActivity.this,
@@ -70,14 +89,21 @@ public class HomePageActivity extends AppCompatActivity {
                         false).show();
                 break;
             case R.id.change_password:
-                FancyToast.makeText(HomePageActivity.this,
-                        "Zmień Hasło",
-                        Toast.LENGTH_SHORT, FancyToast.INFO,
-                        false).show();
-                        break;
-            default:
+
+                transitionChangePassActivity();
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void transitionChangePassActivity() {
+
+        Intent intent = new Intent(HomePageActivity.this, ChangePasswordActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
+
 }

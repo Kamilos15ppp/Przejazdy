@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/about"
-        android:title="Informacje"/>
+        android:title="@string/title_menu_info"/>
 
     <item android:id="@+id/settings"
-        android:title="Ustawienia"/>
+        android:title="@string/title_menu_settings"/>
 
     <item android:id="@+id/change_password"
-        android:title="Zmień Hasło"/>
+        android:title="@string/title_menu_change_pass"/>
 
 </menu>
