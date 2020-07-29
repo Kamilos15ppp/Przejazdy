@@ -187,7 +187,11 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
 
                             i++;
                         }
-                        arrayList.add("Ilość rekordów: " + i + ", Data: " + currentDate);
+                        //arrayList.add("Ilość rekordów: " + i + ", Data: " + currentDate);
+                        FancyToast.makeText(getContext(),
+                                "Ilość rekordów: " + i + "\n Data: " + currentDate,
+                                Toast.LENGTH_LONG, FancyToast.INFO,
+                                false).show();
                         listView.setAdapter(arrayAdapter);
                         listView.setVisibility(View.VISIBLE);
 
