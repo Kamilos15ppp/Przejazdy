@@ -3,9 +3,7 @@ package com.example.przejazdy;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -42,36 +40,36 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         btnLogin2 = findViewById(R.id.btnLogin2);
         imgSignupBus = findViewById(R.id.imgSignupBus);
 
-        showImageToast2(imgSignupBus);
+        //showImageToast2(imgSignupBus);
 
-        imgSignupBus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (click2 == false) {
-
-                    imgSignupBus.animate().alpha(0.5f).setDuration(200);
-                    imgSignupBus.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    edtUsernameSignup.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    edtPasswordSignup.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    btnSignup2.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    btnLogin2.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    click2 = true;
-
-                } else if (click2 == true){
-
-                    imgSignupBus.animate().alpha(1f).setDuration(200);
-                    imgSignupBus.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    edtUsernameSignup.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    edtPasswordSignup.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    btnSignup2.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    btnLogin2.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
-                    click2 = false;
-
-                }
-
-            }
-        });
+//        imgSignupBus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (click2 == false) {
+//
+//                    imgSignupBus.animate().alpha(0.5f).setDuration(200);
+//                    imgSignupBus.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    edtUsernameSignup.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    edtPasswordSignup.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    btnSignup2.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    btnLogin2.animate().translationYBy((Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    click2 = true;
+//
+//                } else if (click2 == true){
+//
+//                    imgSignupBus.animate().alpha(1f).setDuration(200);
+//                    imgSignupBus.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    edtUsernameSignup.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    edtPasswordSignup.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    btnSignup2.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    btnLogin2.animate().translationYBy(-(Resources.getSystem().getDisplayMetrics().heightPixels / 3) ).setDuration(400);
+//                    click2 = false;
+//
+//                }
+//
+//            }
+//        });
 
         btnLogin2.setOnClickListener(this);
         btnSignup2.setOnClickListener(this);
@@ -166,17 +164,17 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void showImageToast2(View view) {
-
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        int x = imgSignupBus.getTop();
-        int y = 350;
-        Toast toast = Toast.makeText(context, R.string.tap_image, duration);
-        toast.setGravity(Gravity.TOP, x, y);
-        toast.show();
-
-    }
+//    private void showImageToast2(View view) {
+//
+//        Context context = getApplicationContext();
+//        int duration = Toast.LENGTH_SHORT;
+//        int x = imgSignupBus.getTop();
+//        int y = 350;
+//        Toast toast = Toast.makeText(context, R.string.tap_image, duration);
+//        toast.setGravity(Gravity.TOP, x, y);
+//        toast.show();
+//
+//    }
 
     public void rootLayoutTapped(View view) {
 

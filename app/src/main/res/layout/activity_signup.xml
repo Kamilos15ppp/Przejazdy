@@ -33,6 +33,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_username_signup"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgSignupBus" />
@@ -47,6 +50,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_password_signup"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtUsernameSignup" />

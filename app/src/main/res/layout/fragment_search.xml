@@ -16,6 +16,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_search_param"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

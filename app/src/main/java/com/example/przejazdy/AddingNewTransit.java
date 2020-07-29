@@ -7,29 +7,38 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddingNewTransit extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText edtTabNumAdding, edtLineNumAdding, edtDirectionAdding,
+    private EditText edtLineNumAdding, edtDirectionAdding,
             edtFirstAdding, edtLastAdding;
-    private Button btnAddingTransit;
+    private AutoCompleteTextView edtTabNumAdding;
+    private Button btnAddingTransit, btnClearTransit;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     public String userName;
+    private ArrayList<String> tabNumArrayList;
+    private ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,30 +53,90 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
         edtFirstAdding = findViewById(R.id.edtFirstAdding);
         edtLastAdding = findViewById(R.id.edtLastAdding);
         btnAddingTransit = findViewById(R.id.btnAddingTransit);
+        btnClearTransit = findViewById(R.id.btnClearTransit);
+
+//        ------------------------------------------------------------------------------------------
+        tabNumArrayList = new ArrayList<>();
+        fillTabNumArrayList();
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tabNumArrayList);
+        edtTabNumAdding.setAdapter(arrayAdapter);
+        edtTabNumAdding.setThreshold(1);
+//--------------------------------------------------------------------------------------------------
 
         btnAddingTransit.setOnClickListener(this);
+        btnClearTransit.setOnClickListener(this);
+    }
+
+    private void fillTabNumArrayList() {
+
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("pojazdy");
+        parseQuery.orderByAscending("taborowy");
+        parseQuery.setLimit(990);
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+
+                    if (objects.size() > 0) {
+
+                        for (ParseObject object : objects) {
+
+                            tabNumArrayList.add(object.getString("taborowy"));
+
+                        }
+
+                    }
+
+                } else {
+
+                    FancyToast.makeText(getApplicationContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG, FancyToast.ERROR,
+                            false).show();
+
+                }
+
+            }
+
+        });
 
     }
 
     @Override
     public void onClick(View view) {
 
-        if (edtTabNumAdding.getText().toString().equals("") ||
-                edtLineNumAdding.getText().toString().equals("") ||
-                edtDirectionAdding.getText().toString().equals("") ||
-                edtFirstAdding.getText().toString().equals("") ||
-                edtLastAdding.getText().toString().equals("")) {
+        switch (view.getId()) {
 
-            FancyToast.makeText(AddingNewTransit.this,
-                    getString(R.string.fancy_adding_new_transit_required),
-                    Toast.LENGTH_SHORT, FancyToast.INFO,
-                    false).show();
+            case R.id.btnAddingTransit:
 
-        } else {
+                if (edtTabNumAdding.getText().toString().equals("") ||
+                        edtLineNumAdding.getText().toString().equals("") ||
+                        edtDirectionAdding.getText().toString().equals("") ||
+                        edtFirstAdding.getText().toString().equals("") ||
+                        edtLastAdding.getText().toString().equals("")) {
 
-            addingNewTransit();
+                    FancyToast.makeText(AddingNewTransit.this,
+                            getString(R.string.fancy_adding_new_transit_required),
+                            Toast.LENGTH_SHORT, FancyToast.INFO,
+                            false).show();
 
+                } else {
+
+                    addingNewTransit();
+
+                }
+                break;
+            case R.id.btnClearTransit:
+
+                edtTabNumAdding.setText("");
+                edtLineNumAdding.setText("");
+                edtDirectionAdding.setText("");
+                edtFirstAdding.setText("");
+                edtLastAdding.setText("");
+            break;
         }
+
+
     }
 
     private void addingNewTransit() {

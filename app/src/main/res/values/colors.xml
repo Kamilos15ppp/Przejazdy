@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary2">#212121</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDark2">#000000</color>
+    <color name="colorAccent2">#03DAC5</color>
+    <color name="colorAccent">#1565c0</color>
     <color name="loginConstraintLayout">#448AFF</color>
     <color name="signupConstraintLayout">#448AFF</color>
-    <color name="btn_login_signup">#FFD600</color>
-    <color name="btn_adding_transit">#1DD900</color>
+    <color name="backgroundConstraintLayout"></color>
+    <color name="btn_login_signup">#f9a825</color>
+    <color name="btn_adding_transit">#1565c0</color>
 </resources>

@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddingNewTransit">
+    tools:context=".AddingNewTransit"
+    android:background="@color/colorPrimaryDark2">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edtTabNumAdding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,6 +17,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_bus_tram_relic_tab_num"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +34,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_bus_line_num"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTabNumAdding" />
@@ -44,6 +51,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_bus_direction"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtLineNumAdding" />
@@ -58,6 +68,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_bus_first"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtDirectionAdding" />
@@ -72,6 +85,9 @@
         android:ems="10"
         android:hint="@string/edt_hint_bus_last"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#039BE5"
+        android:textColorHint="#484848"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtFirstAdding" />
@@ -88,4 +104,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtLastAdding" />
+
+    <Button
+        android:id="@+id/btnClearTransit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/round_shape_btn2"
+        android:text="@string/btn_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddingTransit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
