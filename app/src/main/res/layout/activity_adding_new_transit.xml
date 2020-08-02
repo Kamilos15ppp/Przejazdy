@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edtLineNumAdding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTabNumAdding" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edtDirectionAdding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtLineNumAdding" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edtFirstAdding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtDirectionAdding" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edtLastAdding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

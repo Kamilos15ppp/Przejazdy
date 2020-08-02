@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,14 +30,36 @@ import java.util.Locale;
 
 public class AddingNewTransit extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText edtLineNumAdding, edtDirectionAdding,
-            edtFirstAdding, edtLastAdding;
-    private AutoCompleteTextView edtTabNumAdding;
-    private Button btnAddingTransit, btnClearTransit;
     final String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     public String userName;
-    private ArrayList<String> tabNumArrayList;
-    private ArrayAdapter<String> arrayAdapter;
+    private AutoCompleteTextView edtTabNumAdding, edtLineNumAdding, edtDirectionAdding,
+            edtFirstAdding, edtLastAdding;
+    private Button btnAddingTransit, btnClearTransit;
+    private ArrayList<String> tabNumArrayList, lineArrayList;
+    private ArrayAdapter<String> tabArrayAdapter, lineArrayAdapter, stopsArrayAdapter, directionsArrayAdapter;
+    private String[] stops = {"Salwator", "Wzgórza Krzesławickie", "Bronowice Małe", "Krowodrza Górka", "Nowy Bieżanów P + R", "Łagiewniki", "Bronowice",
+            "Cichy Kącik", "Kurdwanów P + R", "Węgrzynowice", "Zesławice", "Mały Płaszów P + R", "Mistrzejowice", "Szpital Rydygiera", "Zajezdnia Płaszów",
+            "Pleszów", "Chałupki", "Nowy Kleparz", "Azory", "Mydlniki", "Przylasek Rusiecki", "Cmentarz Batowice", "Czyżyny Dworzec", "Prądnik Biały",
+            "Aleja Przyjaźni", "Ruszcza", "Os.Piastów", "Rżąka", "Zajezdnia Wola Duchacka", "Wróżenice", "Nowy Bieżanów Południe", "Os.Kurdwanów", "Kombinat",
+            "Dworzec Główny Zachód", "Kujawy", "Os.Na Stoku", "Dworzec Główny Wschód", "Łososkowice Remiza", "Chobot Leśniczówka", "Czulice Kościół", "Słomniki Osiedle",
+            "Goszcza Dworek", "Czerwone Maki P + R", "Niepołomice Dworzec", "Wieliczka Miasto", "Bulwarowa", "Chełmońskiego Pętla", "Cracovia Stadion", "Przybyszewskiego",
+            "Teatr Ludowy", "Cienista", "Wańkowicza", "Makuszyńskiego", "Nad Dłubnią", "Zajezdnia Bieńczyce", "Petőfiego", "Władysława Jagiełły", "Jana Kazimierza",
+            "Leszka Białego", "Darwina", "Grębałów", "Morcinka", "Kantorowice", "Zesławice Ogródki Działkowe", "Fatimska", "Nowolipki", "Zakład Przeróbki", "Szymańskiego",
+            "Branice Pagórek", "Branice Na Dole", "Branice Szkoła", "Branice", "Branice Ośrodek Zdrowia", "Chałupki Górne", "Kąkolowa", "Truskawkowa", "Architektów",
+            "Os.Na Stoku Szkoła", "Wiadukty", "Elektromontaż", "Zajezdnia Nowa Huta", "Struga", "Aleja Róż", "Os.Zgody", "Rondo Kocmyrzowskie im.Ks.Gorzelanego", "DH Wanda",
+            "Os.Kościuszkowskie", "Dąbrowskiej", "Medweckiego", "Stella - Sawickiego", "Os.Dywizjonu 303", "Wiślicka", "Os.Oświecenia", "Park Wodny", "Słoneckiego", "Rondo Barei",
+            "Miechowity", "Strzelców", "Prądnik Czerwony", "Bulwarowa Ogródki Działkowe", "Klasztorna", "Os.Na Skarpie", "Plac Centralny im.R.Reagana", "Os.Kolorowe", "Rondo Czyżyńskie",
+            "Centralna", "Rondo 308.Dywizjonu", "M1 Nowohucka", "M1 Al.Pokoju", "Tauron Arena Kraków Al.Pokoju", "Elektrociepłownia Kraków", "Koszykarska", "Stoczniowców", "Lipska",
+            "Dworzec Płaszów Estakada", "Kuklińskiego", "Podgórze SKA", "Kamieńskiego Wiadukt", "Bonarka", "Kamieńskiego", "Sławka", "Wola Duchacka", "Nowosądecka", "Beskidzka",
+            "Bujaka", "Halszki", "Stojałowskiego", "Plac Inwalidów", "Teatr Bagatela", "Teatr Słowackiego", "Rondo Mogilskie", "Muzeum Narodowe", "Rondo Grunwaldzkie", "Conrada",
+            "Os.Mistrzejowice Nowe", "Kleeberga", "Rondo Hipokratesa", "Prokocim Szpital", "Jerzmanowskiego", "Bieżanowska"};
+    private String[] directions = {"Salwator", "Wzgórza Krzesławickie", "Bronowice Małe", "Krowodrza Górka", "Nowy Bieżanów P + R", "Łagiewniki", "Bronowice",
+            "Cichy Kącik", "Kurdwanów P + R", "Węgrzynowice", "Zesławice", "Mały Płaszów P + R", "Mistrzejowice", "Szpital Rydygiera", "Zajezdnia Płaszów",
+            "Pleszów", "Chałupki", "Nowy Kleparz", "Azory", "Mydlniki", "Przylasek Rusiecki", "Cmentarz Batowice", "Czyżyny Dworzec", "Prądnik Biały",
+            "Aleja Przyjaźni", "Ruszcza", "Os.Piastów", "Rżąka", "Zajezdnia Wola Duchacka", "Wróżenice", "Nowy Bieżanów Południe", "Os.Kurdwanów", "Kombinat",
+            "Dworzec Główny Zachód", "Kujawy", "Os.Na Stoku", "Dworzec Główny Wschód", "Łososkowice Remiza", "Chobot Leśniczówka", "Czulice Kościół", "Słomniki Osiedle",
+            "Goszcza Dworek", "Czerwone Maki P + R", "Niepołomice Dworzec", "Wieliczka Miasto", "Bulwarowa", "Chełmońskiego Pętla", "Cracovia Stadion", "Przybyszewskiego"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,17 +78,29 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
 
 //        ------------------------------------------------------------------------------------------
         tabNumArrayList = new ArrayList<>();
-        fillTabNumArrayList();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tabNumArrayList);
-        edtTabNumAdding.setAdapter(arrayAdapter);
+        lineArrayList = new ArrayList<>();
+        fillAll();
+        tabArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tabNumArrayList);
+        lineArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lineArrayList);
+        stopsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stops);
+        directionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, directions);
+        edtTabNumAdding.setAdapter(tabArrayAdapter);
+        edtLineNumAdding.setAdapter(lineArrayAdapter);
+        edtDirectionAdding.setAdapter(directionsArrayAdapter);
+        edtFirstAdding.setAdapter(stopsArrayAdapter);
+        edtLastAdding.setAdapter(stopsArrayAdapter);
         edtTabNumAdding.setThreshold(1);
+        edtLineNumAdding.setThreshold(1);
+        edtDirectionAdding.setThreshold(2);
+        edtFirstAdding.setThreshold(2);
+        edtLastAdding.setThreshold(2);
 //--------------------------------------------------------------------------------------------------
 
         btnAddingTransit.setOnClickListener(this);
         btnClearTransit.setOnClickListener(this);
     }
 
-    private void fillTabNumArrayList() {
+    private void fillAll() {
 
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("pojazdy");
         parseQuery.orderByAscending("taborowy");
@@ -99,6 +132,99 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
             }
 
         });
+
+        ParseQuery<ParseObject> parseQuery2 = ParseQuery.getQuery("autocomplete");
+        parseQuery2.orderByAscending("L");
+        parseQuery2.setLimit(200);
+        parseQuery2.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+
+                    if (objects.size() > 0) {
+
+                        for (ParseObject object : objects) {
+
+                            lineArrayList.add(object.getString("L"));
+
+                        }
+
+                    }
+
+                } else {
+
+                    FancyToast.makeText(getApplicationContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG, FancyToast.ERROR,
+                            false).show();
+
+                }
+
+            }
+
+        });
+
+//        ParseQuery<ParseObject> parseQuery3 = ParseQuery.getQuery("autocomplete");
+//        parseQuery3.orderByDescending("K");
+//        parseQuery3.setLimit(200);
+//        parseQuery3.findInBackground(new FindCallback<ParseObject>() {
+//            @Override
+//            public void done(List<ParseObject> objects, ParseException e) {
+//                if (e == null) {
+//
+//                    if (objects.size() > 0) {
+//
+//                        for (ParseObject object : objects) {
+//
+//                            directionArrayList.add(object.getString("K"));
+//
+//                        }
+//
+//                    }
+//
+//                } else {
+//
+//                    FancyToast.makeText(getApplicationContext(),
+//                            e.getMessage(),
+//                            Toast.LENGTH_LONG, FancyToast.ERROR,
+//                            false).show();
+//
+//                }
+//
+//            }
+//
+//        });
+
+//        ParseQuery<ParseObject> parseQuery4 = ParseQuery.getQuery("autocomplete");
+//        parseQuery4.orderByAscending("P");
+//        parseQuery4.setLimit(200);
+//        parseQuery4.findInBackground(new FindCallback<ParseObject>() {
+//            @Override
+//            public void done(List<ParseObject> objects, ParseException e) {
+//                if (e == null) {
+//
+//                    if (objects.size() > 0) {
+//
+//                        for (ParseObject object : objects) {
+//
+//                            firstLastArrayList.add(object.getString("P"));
+//
+//                        }
+//
+//                    }
+//
+//                } else {
+//
+//                    FancyToast.makeText(getApplicationContext(),
+//                            e.getMessage(),
+//                            Toast.LENGTH_LONG, FancyToast.ERROR,
+//                            false).show();
+//
+//                }
+//
+//            }
+//
+//        });
 
     }
 
@@ -133,7 +259,7 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
                 edtDirectionAdding.setText("");
                 edtFirstAdding.setText("");
                 edtLastAdding.setText("");
-            break;
+                break;
         }
 
 
@@ -182,7 +308,7 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
 //        Intent intent = new Intent(AddingNewTransit.this, AddTransit.class);
 //        startActivity(intent);
 
-        @SuppressLint("HandlerLeak") Handler h = new Handler(){
+        @SuppressLint("HandlerLeak") Handler h = new Handler() {
             @Override
             public void handleMessage(Message msg) {
 
