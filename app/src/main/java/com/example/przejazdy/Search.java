@@ -166,6 +166,14 @@ public class Search extends Fragment implements View.OnClickListener{
                             false).show();
 
                 }
+                if (i == 0) {
+
+                    FancyToast.makeText(getContext(),
+                            getString(R.string.fancy_nothing_search),
+                            Toast.LENGTH_LONG, FancyToast.INFO,
+                            false).show();
+
+                }
 
             }
 
