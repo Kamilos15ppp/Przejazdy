@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,7 +28,7 @@ import java.util.List;
 
 public class Search extends Fragment implements View.OnClickListener{
 
-    private EditText edtSearchData;
+    private AutoCompleteTextView edtSearchData;
     private Button btnSearch, btnClear;
     private RadioButton rbtnButton;
     private RadioGroup rbtnGroup;
@@ -39,6 +39,25 @@ public class Search extends Fragment implements View.OnClickListener{
     private ArrayAdapter arrayAdapter;
     private String userName;
 
+
+    private ArrayAdapter<String> autofillArrayAdapter;
+    private String[] autofillData = {"Salwator", "Wzgórza Krzesławickie", "Bronowice Małe", "Krowodrza Górka", "Nowy Bieżanów P + R", "Łagiewniki", "Bronowice",
+            "Cichy Kącik", "Kurdwanów P + R", "Węgrzynowice", "Zesławice", "Mały Płaszów P + R", "Mistrzejowice", "Szpital Rydygiera", "Zajezdnia Płaszów",
+            "Pleszów", "Chałupki", "Nowy Kleparz", "Azory", "Mydlniki", "Przylasek Rusiecki", "Cmentarz Batowice", "Czyżyny Dworzec", "Prądnik Biały",
+            "Aleja Przyjaźni", "Ruszcza", "Os.Piastów", "Rżąka", "Zajezdnia Wola Duchacka", "Wróżenice", "Nowy Bieżanów Południe", "Os.Kurdwanów", "Kombinat",
+            "Dworzec Główny Zachód", "Kujawy", "Os.Na Stoku", "Dworzec Główny Wschód", "Łososkowice Remiza", "Chobot Leśniczówka", "Czulice Kościół", "Słomniki Osiedle",
+            "Goszcza Dworek", "Czerwone Maki P + R", "Niepołomice Dworzec", "Wieliczka Miasto", "Bulwarowa", "Chełmońskiego Pętla", "Cracovia Stadion", "Przybyszewskiego",
+            "Teatr Ludowy", "Cienista", "Wańkowicza", "Makuszyńskiego", "Nad Dłubnią", "Zajezdnia Bieńczyce", "Petőfiego", "Władysława Jagiełły", "Jana Kazimierza",
+            "Leszka Białego", "Darwina", "Grębałów", "Morcinka", "Kantorowice", "Zesławice Ogródki Działkowe", "Fatimska", "Nowolipki", "Zakład Przeróbki", "Szymańskiego",
+            "Branice Pagórek", "Branice Na Dole", "Branice Szkoła", "Branice", "Branice Ośrodek Zdrowia", "Chałupki Górne", "Kąkolowa", "Truskawkowa", "Architektów",
+            "Os.Na Stoku Szkoła", "Wiadukty", "Elektromontaż", "Zajezdnia Nowa Huta", "Struga", "Aleja Róż", "Os.Zgody", "Rondo Kocmyrzowskie im.Ks.Gorzelanego", "DH Wanda",
+            "Os.Kościuszkowskie", "Dąbrowskiej", "Medweckiego", "Stella - Sawickiego", "Os.Dywizjonu 303", "Wiślicka", "Os.Oświecenia", "Park Wodny", "Słoneckiego", "Rondo Barei",
+            "Miechowity", "Strzelców", "Prądnik Czerwony", "Bulwarowa Ogródki Działkowe", "Klasztorna", "Os.Na Skarpie", "Plac Centralny im.R.Reagana", "Os.Kolorowe", "Rondo Czyżyńskie",
+            "Centralna", "Rondo 308.Dywizjonu", "M1 Nowohucka", "M1 Al.Pokoju", "Tauron Arena Kraków Al.Pokoju", "Elektrociepłownia Kraków", "Koszykarska", "Stoczniowców", "Lipska",
+            "Dworzec Płaszów Estakada", "Kuklińskiego", "Podgórze SKA", "Kamieńskiego Wiadukt", "Bonarka", "Kamieńskiego", "Sławka", "Wola Duchacka", "Nowosądecka", "Beskidzka",
+            "Bujaka", "Halszki", "Stojałowskiego", "Plac Inwalidów", "Teatr Bagatela", "Teatr Słowackiego", "Rondo Mogilskie", "Muzeum Narodowe", "Rondo Grunwaldzkie", "Conrada",
+            "Os.Mistrzejowice Nowe", "Kleeberga", "Rondo Hipokratesa", "Prokocim Szpital", "Jerzmanowskiego", "Bieżanowska", "Kostrze OSP", "Kolna", "Tyniecka Autostrada",
+            "Os.Podwawelskie", "Zielińskiego", "Tauron Arena Kraków Wieczysta", "Ugorek", "Tyniec Kamieniołom", "Os.Podwawelskie", "Borek Fałęcki"};
 
     public Search() {
 
@@ -59,6 +78,10 @@ public class Search extends Fragment implements View.OnClickListener{
         btnSearch = view.findViewById(R.id.btnSearch);
         btnClear = view.findViewById(R.id.btnClear);
         edtSearchData = view.findViewById(R.id.edtSearchData);
+
+        autofillArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, autofillData);
+        edtSearchData.setAdapter(autofillArrayAdapter);
+        edtSearchData.setThreshold(1);
 
         rbtnGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("ResourceType")

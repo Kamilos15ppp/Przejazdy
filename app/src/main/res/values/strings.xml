@@ -73,7 +73,7 @@
     <string name="fancy_go_back">Nie zmieniono hasła!</string>
     <string name="fancy_nothing_search">Brak rekordów</string>
     <string name="progressdialog_signingup">Tworzenie użytkownika</string>
-<!--    radio buttons-->
+    <!--    radio buttons-->
     <string name="radio_button_tab_num">Nr taborowy</string>
     <string name="radio_button_line">Linia</string>
     <string name="radio_button_first">Przystanek początkowy</string>

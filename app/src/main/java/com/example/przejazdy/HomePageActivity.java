@@ -88,10 +88,13 @@ public class HomePageActivity extends AppCompatActivity {
                         false).show();
                 break;
             case  R.id.settings:
-                FancyToast.makeText(HomePageActivity.this,
-                        "Ustawienia",
-                        Toast.LENGTH_SHORT, FancyToast.INFO,
-                        false).show();
+//                FancyToast.makeText(HomePageActivity.this,
+//                        "Ustawienia",
+//                        Toast.LENGTH_SHORT, FancyToast.INFO,
+//                        false).show();
+
+                //transitionSettingsActivity();
+
                 break;
             case R.id.change_password:
 
@@ -108,6 +111,13 @@ public class HomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(HomePageActivity.this, ChangePasswordActivity.class);
         startActivity(intent);
         finish();
+
+    }
+
+    private void transitionSettingsActivity() {
+
+        Intent intent = new Intent(HomePageActivity.this, SettingsActivity.class);
+        startActivity(intent);
 
     }
 
