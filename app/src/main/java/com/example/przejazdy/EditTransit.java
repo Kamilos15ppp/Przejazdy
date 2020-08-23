@@ -43,11 +43,11 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
         btnEditTransit = findViewById(R.id.btnEditTransit);
         btnGoBack = findViewById(R.id.btnGoBack);
 
-        edtTabNumEdit.setText(AddTransit.taborowyTransit);
-        edtLineNumEdit.setText(AddTransit.liniaTransit);
-        edtDirectionEdit.setText(AddTransit.kierunekTransit);
-        edtFirstEdit.setText(AddTransit.poczatkowyTransit);
-        edtLastEdit.setText(AddTransit.koncowyTransit);
+        edtTabNumEdit.setText(Transits.taborowyTransit);
+        edtLineNumEdit.setText(Transits.liniaTransit);
+        edtDirectionEdit.setText(Transits.kierunekTransit);
+        edtFirstEdit.setText(Transits.poczatkowyTransit);
+        edtLastEdit.setText(Transits.koncowyTransit);
 
         btnEditTransit.setOnClickListener(this);
         btnGoBack.setOnClickListener(this);
@@ -93,7 +93,7 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
         ParseUser parseUser = ParseUser.getCurrentUser();
         userName = parseUser.getUsername().toLowerCase();
         ParseQuery<ParseObject> przejazd = ParseQuery.getQuery("przejazdy_" + userName);
-        przejazd.getInBackground(AddTransit.objectIdTransit, new GetCallback<ParseObject>() {
+        przejazd.getInBackground(Transits.objectIdTransit, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
 
                 if (e == null) {
@@ -139,7 +139,7 @@ public class EditTransit extends AppCompatActivity implements View.OnClickListen
 
     private void transitionHomePageActivity() {
 
-//        Intent intent = new Intent(AddingNewTransit.this, AddTransit.class);
+//        Intent intent = new Intent(AddingNewTransit.this, Transits.class);
 //        startActivity(intent);
 //
         @SuppressLint("HandlerLeak") Handler h = new Handler(){

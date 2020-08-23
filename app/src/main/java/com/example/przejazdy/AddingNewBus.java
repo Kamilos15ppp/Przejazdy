@@ -99,7 +99,7 @@ public class AddingNewBus extends AppCompatActivity implements View.OnClickListe
 
     private void transitionHomePageActivity() {
 
-//        Intent intent = new Intent(AddingNewTransit.this, AddTransit.class);
+//        Intent intent = new Intent(AddingNewTransit.this, Transits.class);
 //        startActivity(intent);
 
         @SuppressLint("HandlerLeak") Handler h = new Handler() {

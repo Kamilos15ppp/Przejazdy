@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.FindCallback;
@@ -27,8 +28,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class AddTransit extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener  {
+public class Transits extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener  {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private ListView listView;
     private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
@@ -37,14 +39,16 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
     public static String objectIdTransit, objectIdTransit2, taborowyTransit, liniaTransit, kierunekTransit, poczatkowyTransit, koncowyTransit;
     public String userName;
 
-    public AddTransit() {
+    public Transits() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_transit, container, false);
+        View view = inflater.inflate(R.layout.fragment_transits, container, false);
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeContainer);
 
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
@@ -53,10 +57,20 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         Context context = getContext();
         arrayAdapter = new ArrayAdapter(context, R.layout.text_size_transit, arrayList);
 
-        listView.setOnItemClickListener(AddTransit.this);
-        listView.setOnItemLongClickListener(AddTransit.this);
+        listView.setOnItemClickListener(Transits.this);
+        listView.setOnItemLongClickListener(Transits.this);
 
         displayingObject();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                arrayList.clear();
+                displayingRefreshObject();
+
+            }
+        });
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,5 +225,72 @@ public class AddTransit extends Fragment implements AdapterView.OnItemClickListe
         });
 
     }
+    private void displayingRefreshObject() {
+
+        ParseUser parseUser = ParseUser.getCurrentUser();
+        userName = parseUser.getUsername().toLowerCase();
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("przejazdy_" + userName);
+        parseQuery.whereEqualTo("data", currentDate);
+        parseQuery.orderByDescending("createdAt");
+        parseQuery.setLimit(50);
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                int i = 0;
+                if (e == null) {
+
+                    if (objects.size() > 0) {
+
+                        for (ParseObject object : objects) {
+
+                            arrayList.add(object.getString("taborowy")
+                                    + " | " + object.getString("linia")
+                                    + " | " + object.getString("kierunek")
+                                    + " | " + object.getString("poczatkowy")
+                                    + " | " + object.getString("koncowy"));
+
+                            i++;
+                        }
+                        //arrayList.add("Ilość rekordów: " + i + ", Data: " + currentDate);
+                        FancyToast.makeText(getContext(),
+                                "Ilość rekordów: " + i + "\n Data: " + currentDate,
+                                Toast.LENGTH_LONG, FancyToast.INFO,
+                                false).show();
+
+                        arrayAdapter.notifyDataSetChanged();
+
+                        if (swipeRefreshLayout.isRefreshing()) {
+
+                            swipeRefreshLayout.setRefreshing(false);
+
+                        }
+
+                        listView.setVisibility(View.VISIBLE);
+
+                    } else {
+
+                        if (swipeRefreshLayout.isRefreshing()) {
+
+                            swipeRefreshLayout.setRefreshing(false);
+
+                        }
+
+                    }
+
+                } else {
+
+                    FancyToast.makeText(getContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_LONG, FancyToast.ERROR,
+                            false).show();
+
+                }
+
+            }
+
+        });
+
+    }
+
 
 }

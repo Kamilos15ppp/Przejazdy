@@ -52,13 +52,15 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
             "Centralna", "Rondo 308.Dywizjonu", "M1 Nowohucka", "M1 Al.Pokoju", "Tauron Arena Kraków Al.Pokoju", "Elektrociepłownia Kraków", "Koszykarska", "Stoczniowców", "Lipska",
             "Dworzec Płaszów Estakada", "Kuklińskiego", "Podgórze SKA", "Kamieńskiego Wiadukt", "Bonarka", "Kamieńskiego", "Sławka", "Wola Duchacka", "Nowosądecka", "Beskidzka",
             "Bujaka", "Halszki", "Stojałowskiego", "Plac Inwalidów", "Teatr Bagatela", "Teatr Słowackiego", "Rondo Mogilskie", "Muzeum Narodowe", "Rondo Grunwaldzkie", "Conrada",
-            "Os.Mistrzejowice Nowe", "Kleeberga", "Rondo Hipokratesa", "Prokocim Szpital", "Jerzmanowskiego", "Bieżanowska"};
+            "Os.Mistrzejowice Nowe", "Kleeberga", "Rondo Hipokratesa", "Prokocim Szpital", "Jerzmanowskiego", "Bieżanowska", "Kostrze OSP", "Kolna", "Tyniecka Autostrada",
+            "Os.Podwawelskie", "Zielińskiego"};
     private String[] directions = {"Salwator", "Wzgórza Krzesławickie", "Bronowice Małe", "Krowodrza Górka", "Nowy Bieżanów P + R", "Łagiewniki", "Bronowice",
             "Cichy Kącik", "Kurdwanów P + R", "Węgrzynowice", "Zesławice", "Mały Płaszów P + R", "Mistrzejowice", "Szpital Rydygiera", "Zajezdnia Płaszów",
             "Pleszów", "Chałupki", "Nowy Kleparz", "Azory", "Mydlniki", "Przylasek Rusiecki", "Cmentarz Batowice", "Czyżyny Dworzec", "Prądnik Biały",
             "Aleja Przyjaźni", "Ruszcza", "Os.Piastów", "Rżąka", "Zajezdnia Wola Duchacka", "Wróżenice", "Nowy Bieżanów Południe", "Os.Kurdwanów", "Kombinat",
             "Dworzec Główny Zachód", "Kujawy", "Os.Na Stoku", "Dworzec Główny Wschód", "Łososkowice Remiza", "Chobot Leśniczówka", "Czulice Kościół", "Słomniki Osiedle",
-            "Goszcza Dworek", "Czerwone Maki P + R", "Niepołomice Dworzec", "Wieliczka Miasto", "Bulwarowa", "Chełmońskiego Pętla", "Cracovia Stadion", "Przybyszewskiego"};
+            "Goszcza Dworek", "Czerwone Maki P + R", "Niepołomice Dworzec", "Wieliczka Miasto", "Bulwarowa", "Chełmońskiego Pętla", "Cracovia Stadion", "Przybyszewskiego",
+            "Tauron Arena Kraków Wieczysta", "Ugorek", "Tyniec Kamieniołom", "Os.Podwawelskie", "Borek Fałęcki"};
 
 
     @Override
@@ -305,7 +307,7 @@ public class AddingNewTransit extends AppCompatActivity implements View.OnClickL
 
     private void transitionHomePageActivity() {
 
-//        Intent intent = new Intent(AddingNewTransit.this, AddTransit.class);
+//        Intent intent = new Intent(AddingNewTransit.this, Transits.class);
 //        startActivity(intent);
 
         @SuppressLint("HandlerLeak") Handler h = new Handler() {

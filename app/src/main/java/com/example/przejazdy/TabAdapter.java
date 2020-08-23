@@ -20,7 +20,7 @@ public class TabAdapter extends FragmentPagerAdapter {
         switch (tabPosition) {
 
             case 0:
-                return new AddTransit();
+                return new Transits();
             case 1:
                 return new Search();
             case 2:
